@@ -62,13 +62,13 @@ export default function ProfilePage() {
   const getRoleBadge = (role: string) => {
     switch (role) {
       case 'admin':
-        return <Badge variant="secondary" className="bg-red-100 text-red-800">Administrator</Badge>;
+        return <Badge variant="secondary" className="bg-red-100 text-red-800">Администратор</Badge>;
       case 'teacher':
-        return <Badge variant="secondary" className="bg-blue-100 text-blue-800">Teacher</Badge>;
+        return <Badge variant="secondary" className="bg-blue-100 text-blue-800">Преподаватель</Badge>;
       case 'student':
-        return <Badge variant="secondary" className="bg-green-100 text-green-800">Student</Badge>;
+        return <Badge variant="secondary" className="bg-green-100 text-green-800">Студент</Badge>;
       default:
-        return <Badge variant="secondary">Unknown</Badge>;
+        return <Badge variant="secondary">Неизвестный</Badge>;
     }
   };
 
@@ -171,8 +171,8 @@ export default function ProfilePage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <Card>
               <CardContent className="text-center py-12">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">User Not Found</h2>
-                <p className="text-gray-600">Unable to load user profile.</p>
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">Пользователь не найден</h2>
+                <p className="text-gray-600">Не удалось загрузить профиль пользователя.</p>
               </CardContent>
             </Card>
           </div>
@@ -191,7 +191,7 @@ export default function ProfilePage() {
             <Link href="/dashboard">
               <Button variant="ghost" className="mb-4">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Dashboard
+                Вернуться на панель управления
               </Button>
             </Link>
             
@@ -216,7 +216,7 @@ export default function ProfilePage() {
                   {user.group && (
                     <div className="flex items-center space-x-2">
                       <GraduationCap className="h-4 w-4" />
-                      <span>Group {user.group}</span>
+                      <span>Группа {user.group}</span>
                     </div>
                   )}
                 </div>
@@ -244,9 +244,9 @@ export default function ProfilePage() {
           {/* Tabs */}
           <Tabs defaultValue="profile" className="space-y-6">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="profile">Profile Information</TabsTrigger>
-              <TabsTrigger value="security">Security</TabsTrigger>
-              <TabsTrigger value="notifications">Notifications</TabsTrigger>
+              <TabsTrigger value="profile">Информация о профиле</TabsTrigger>
+              <TabsTrigger value="security">Безопасность</TabsTrigger>
+              <TabsTrigger value="notifications">Уведомления</TabsTrigger>
             </TabsList>
 
             <TabsContent value="profile" className="space-y-6">
@@ -254,15 +254,15 @@ export default function ProfilePage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
-                      <CardTitle>Profile Information</CardTitle>
+                      <CardTitle>Информация о профиле</CardTitle>
                       <CardDescription>
-                        Update your personal information and account details
+                        Обновите личную информацию и данные учетной записи
                       </CardDescription>
                     </div>
                     {!isEditing && (
                       <Button variant="outline" onClick={() => setIsEditing(true)}>
                         <Edit className="h-4 w-4 mr-2" />
-                        Edit Profile
+                        Редактировать профиль
                       </Button>
                     )}
                   </div>
@@ -271,7 +271,7 @@ export default function ProfilePage() {
                   <form onSubmit={handleProfileUpdate} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="name">Full Name</Label>
+                        <Label htmlFor="name">Полное имя</Label>
                         <Input
                           id="name"
                           value={profileData.name}
@@ -282,7 +282,7 @@ export default function ProfilePage() {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="email">Email Address</Label>
+                        <Label htmlFor="email">Электронная почта</Label>
                         <Input
                           id="email"
                           type="email"
@@ -294,7 +294,7 @@ export default function ProfilePage() {
                       </div>
 
                       <div className="space-y-2">
-                        <Label>Role</Label>
+                        <Label>Роль</Label>
                         <div className="flex items-center space-x-2">
                           {getRoleIcon(user.role)}
                           <span className="capitalize font-medium">{user.role}</span>
@@ -304,7 +304,7 @@ export default function ProfilePage() {
 
                       {user.group && (
                         <div className="space-y-2">
-                          <Label>Group</Label>
+                          <Label>Группа</Label>
                           <div className="flex items-center space-x-2">
                             <GraduationCap className="h-4 w-4" />
                             <span className="font-medium">{user.group}</span>
@@ -330,18 +330,18 @@ export default function ProfilePage() {
                           }}
                           disabled={isSaving}
                         >
-                          Cancel
+                          Отмена
                         </Button>
                         <Button type="submit" disabled={isSaving}>
                           {isSaving ? (
                             <>
                               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                              Saving...
+                              Сохранение...
                             </>
                           ) : (
                             <>
                               <Save className="h-4 w-4 mr-2" />
-                              Save Changes
+                              Сохранить изменения
                             </>
                           )}
                         </Button>
@@ -357,16 +357,16 @@ export default function ProfilePage() {
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <Key className="h-5 w-5" />
-                    <span>Change Password</span>
+                    <span>Изменить пароль</span>
                   </CardTitle>
                   <CardDescription>
-                    Update your password to keep your account secure
+                    Обновите пароль, чтобы обезопасить свою учетную запись
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handlePasswordChange} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="currentPassword">Current Password</Label>
+                      <Label htmlFor="currentPassword">Текущий пароль</Label>
                       <Input
                         id="currentPassword"
                         type="password"
@@ -378,7 +378,7 @@ export default function ProfilePage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="newPassword">New Password</Label>
+                      <Label htmlFor="newPassword">Новый пароль</Label>
                       <Input
                         id="newPassword"
                         type="password"
@@ -390,7 +390,7 @@ export default function ProfilePage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="confirmPassword">Confirm New Password</Label>
+                      <Label htmlFor="confirmPassword">Подтвердите новый пароль</Label>
                       <Input
                         id="confirmPassword"
                         type="password"
@@ -406,12 +406,12 @@ export default function ProfilePage() {
                         {isSaving ? (
                           <>
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                            Updating...
+                            Обновляется..
                           </>
                         ) : (
                           <>
                             <Key className="h-4 w-4 mr-2" />
-                            Change Password
+                            Изменить пароль
                           </>
                         )}
                       </Button>
@@ -422,25 +422,25 @@ export default function ProfilePage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Account Information</CardTitle>
+                  <CardTitle>Сведения об учетной записи</CardTitle>
                   <CardDescription>
-                    Your account details and security information
+                    Данные вашей учетной записи и параметры безопасности
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <span className="text-sm font-medium text-gray-900">Account Created</span>
-                        <p className="text-sm text-gray-600">Your account was created on September 1, 2024</p>
+                        <span className="text-sm font-medium text-gray-900">Учетная запись создана</span>
+                        <p className="text-sm text-gray-600">Ваша учетная запись была создана 1 сентября 2024 года</p>
                       </div>
                       <Calendar className="h-4 w-4 text-gray-400" />
                     </div>
                     
                     <div className="flex items-center justify-between">
                       <div>
-                        <span className="text-sm font-medium text-gray-900">Last Login</span>
-                        <p className="text-sm text-gray-600">Today at 2:30 PM</p>
+                        <span className="text-sm font-medium text-gray-900">Последний вход в систему</span>
+                        <p className="text-sm text-gray-600">Сегодня в 14:30</p>
                       </div>
                       <User className="h-4 w-4 text-gray-400" />
                     </div>
@@ -454,18 +454,18 @@ export default function ProfilePage() {
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <Bell className="h-5 w-5" />
-                    <span>Notification Preferences</span>
+                    <span>Параметры уведомлений</span>
                   </CardTitle>
                   <CardDescription>
-                    Manage how you receive notifications and updates
+                    Управление уведомлениями и обновлениями
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="text-sm font-medium text-gray-900">Email Notifications</h4>
-                        <p className="text-sm text-gray-600">Receive notifications via email</p>
+                        <h4 className="text-sm font-medium text-gray-900">Email-уведомления</h4>
+                        <p className="text-sm text-gray-600">Получать уведомления на email</p>
                       </div>
                       <Switch
                         checked={notifications.emailNotifications}
@@ -475,8 +475,8 @@ export default function ProfilePage() {
 
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="text-sm font-medium text-gray-900">Assignment Reminders</h4>
-                        <p className="text-sm text-gray-600">Get reminded about upcoming assignment deadlines</p>
+                        <h4 className="text-sm font-medium text-gray-900">Уведомления о заданиях</h4>
+                        <p className="text-sm text-gray-600">Получайте уведомления о дедлайнах по заданиям</p>
                       </div>
                       <Switch
                         checked={notifications.assignmentReminders}
@@ -486,8 +486,8 @@ export default function ProfilePage() {
 
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="text-sm font-medium text-gray-900">Grade Notifications</h4>
-                        <p className="text-sm text-gray-600">Be notified when grades are posted</p>
+                        <h4 className="text-sm font-medium text-gray-900">Уведомления об оценках</h4>
+                        <p className="text-sm text-gray-600">Получайте оповещения о новых оценках</p>
                       </div>
                       <Switch
                         checked={notifications.gradeNotifications}
@@ -497,8 +497,8 @@ export default function ProfilePage() {
 
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="text-sm font-medium text-gray-900">System Updates</h4>
-                        <p className="text-sm text-gray-600">Receive notifications about system maintenance and updates</p>
+                        <h4 className="text-sm font-medium text-gray-900">Системные обновления</h4>
+                        <p className="text-sm text-gray-600">Уведомления о работах по обслуживанию и обновлениях системы</p>
                       </div>
                       <Switch
                         checked={notifications.systemUpdates}

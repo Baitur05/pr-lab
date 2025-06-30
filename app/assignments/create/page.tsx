@@ -128,13 +128,13 @@ export default function CreateAssignmentPage() {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="h-8 w-8 text-green-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Assignment Created Successfully!</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Задание успешно создано!</h2>
                 <p className="text-gray-600 mb-6">
-                  "{formData.title}" has been created and is now available to students.
+                  "{formData.title}" было создано и теперь доступно для студентов.
                 </p>
                 <div className="space-x-4">
                   <Link href="/assignments">
-                    <Button>View All Assignments</Button>
+                    <Button>Просмотреть все задания</Button>
                   </Link>
                   <Button 
                     variant="outline" 
@@ -149,7 +149,7 @@ export default function CreateAssignmentPage() {
                       });
                     }}
                   >
-                    Create Another
+                    Создать другое
                   </Button>
                 </div>
               </CardContent>
@@ -170,12 +170,12 @@ export default function CreateAssignmentPage() {
             <Link href="/assignments">
               <Button variant="ghost" className="mb-4">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Assignments
+               Назад к заданиям
               </Button>
             </Link>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Create New Assignment</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Создать новое задание</h1>
             <p className="text-gray-600">
-              Create a new laboratory assignment for your students to complete.
+              Создайте новое лабораторное задание для выполнения вашими студентами.
             </p>
           </div>
 
@@ -184,10 +184,10 @@ export default function CreateAssignmentPage() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <BookOpen className="h-5 w-5" />
-                <span>Assignment Details</span>
+                <span>Детали задания</span>
               </CardTitle>
               <CardDescription>
-                Fill in the information for your new laboratory assignment
+                Заполните информацию для вашего нового лабораторного задания
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -200,7 +200,7 @@ export default function CreateAssignmentPage() {
 
                 {/* Title */}
                 <div className="space-y-2">
-                  <Label htmlFor="title">Assignment Title *</Label>
+                  <Label htmlFor="title">Название задания *</Label>
                   <Input
                     id="title"
                     name="title"
@@ -214,7 +214,7 @@ export default function CreateAssignmentPage() {
 
                 {/* Description */}
                 <div className="space-y-2">
-                  <Label htmlFor="description">Description *</Label>
+                  <Label htmlFor="description">Описание *</Label>
                   <Textarea
                     id="description"
                     name="description"
@@ -229,7 +229,7 @@ export default function CreateAssignmentPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Deadline */}
                   <div className="space-y-2">
-                    <Label htmlFor="deadline">Deadline *</Label>
+                    <Label htmlFor="deadline">Крайний срок *</Label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                       <Input
@@ -247,7 +247,7 @@ export default function CreateAssignmentPage() {
 
                   {/* Max Grade */}
                   <div className="space-y-2">
-                    <Label htmlFor="maxGrade">Maximum Grade</Label>
+                    <Label htmlFor="maxGrade">Максимальный балл</Label>
                     <Input
                       id="maxGrade"
                       name="maxGrade"
@@ -263,12 +263,12 @@ export default function CreateAssignmentPage() {
 
                 {/* Materials Upload */}
                 <div className="space-y-2">
-                  <Label htmlFor="materials">Assignment Materials</Label>
+                  <Label htmlFor="materials">Материалы для задания</Label>
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
                     <Upload className="h-8 w-8 text-gray-400 mx-auto mb-2" />
                     <Label htmlFor="materials" className="cursor-pointer">
                       <span className="text-sm text-gray-600">
-                        Click to upload assignment materials (PDF, DOC, ZIP)
+                        Нажмите, чтобы загрузить материалы задания (PDF, DOC, ZIP)
                       </span>
                       <Input
                         id="materials"
@@ -280,12 +280,12 @@ export default function CreateAssignmentPage() {
                     </Label>
                     {formData.materials && (
                       <div className="mt-2 text-sm text-blue-600">
-                        Selected: {formData.materials.name}
+                        Выбрано:{formData.materials.name}
                       </div>
                     )}
                   </div>
                   <p className="text-xs text-gray-500">
-                    Upload materials like instructions, starter files, or reference documents (Max 10MB)
+                    Загрузите материалы, такие как инструкции, стартовые файлы или справочные документы (максимум 10 МБ)
                   </p>
                 </div>
 
@@ -293,19 +293,19 @@ export default function CreateAssignmentPage() {
                 <div className="flex justify-end space-x-4 pt-6 border-t">
                   <Link href="/assignments">
                     <Button type="button" variant="outline">
-                      Cancel
+                      Отмена
                     </Button>
                   </Link>
                   <Button type="submit" disabled={isLoading} className="bg-blue-600 hover:bg-blue-700">
                     {isLoading ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Creating...
+                       Создание...
                       </>
                     ) : (
                       <>
                         <Save className="h-4 w-4 mr-2" />
-                        Create Assignment
+                        Создать задание
                       </>
                     )}
                   </Button>

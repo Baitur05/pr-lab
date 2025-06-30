@@ -124,8 +124,8 @@ export default function StudentsPage() {
 
   const getStatusBadge = (status: string) => {
     return status === 'active' 
-      ? <Badge variant="secondary" className="bg-green-100 text-green-800">Active</Badge>
-      : <Badge variant="secondary" className="bg-gray-100 text-gray-800">Inactive</Badge>;
+      ? <Badge variant="secondary" className="bg-green-100 text-green-800">Активный</Badge>
+      : <Badge variant="secondary" className="bg-gray-100 text-gray-800">Неактивный</Badge>;
   };
 
   const getProgressIcon = (completed: number, total: number) => {
@@ -164,7 +164,7 @@ export default function StudentsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Students</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Студенты</h1>
             <p className="text-gray-600">
               {user?.role === 'admin' ? 'Manage all students in the system' : 'View and manage your students'}
             </p>
@@ -174,49 +174,49 @@ export default function StudentsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <Card className="border-l-4 border-l-blue-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Students</CardTitle>
+                <CardTitle className="text-sm font-medium">Всего студентов</CardTitle>
                 <Users className="h-4 w-4 text-blue-600" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-blue-600">{totalStudents}</div>
                 <p className="text-xs text-muted-foreground">
-                  {groups.length} groups
+                  {groups.length} группы
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-emerald-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Active Students</CardTitle>
+                <CardTitle className="text-sm font-medium">Активные Студенты</CardTitle>
                 <CheckCircle className="h-4 w-4 text-emerald-600" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-emerald-600">{activeStudents}</div>
                 <p className="text-xs text-muted-foreground">
-                  {totalStudents > 0 ? Math.round((activeStudents / totalStudents) * 100) : 0}% active rate
+                  {totalStudents > 0 ? Math.round((activeStudents / totalStudents) * 100) : 0}% Процент активности
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-orange-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Avg Completion</CardTitle>
+                <CardTitle className="text-sm font-medium">Среднее выполнение</CardTitle>
                 <BookOpen className="h-4 w-4 text-orange-600" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-orange-600">{averageCompletion}%</div>
-                <p className="text-xs text-muted-foreground">Assignment completion</p>
+                <p className="text-xs text-muted-foreground">Выполнение задания</p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-purple-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Average Grade</CardTitle>
+                <CardTitle className="text-sm font-medium">Средняя оценка</CardTitle>
                 <GraduationCap className="h-4 w-4 text-purple-600" />
               </CardHeader>
               <CardContent>
                 <div className={`text-2xl font-bold ${getGradeColor(averageGrade)}`}>{averageGrade}</div>
-                <p className="text-xs text-muted-foreground">Overall performance</p>
+                <p className="text-xs text-muted-foreground">Общая успеваемость</p>
               </CardContent>
             </Card>
           </div>
@@ -241,7 +241,7 @@ export default function StudentsPage() {
                     <SelectValue placeholder="Filter by group" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Groups</SelectItem>
+                    <SelectItem value="all">Все группы</SelectItem>
                     {groups.map(group => (
                       <SelectItem key={group} value={group}>{group}</SelectItem>
                     ))}
@@ -253,9 +253,9 @@ export default function StudentsPage() {
                     <SelectValue placeholder="Filter by status" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="inactive">Inactive</SelectItem>
+                    <SelectItem value="all">Все Студенты</SelectItem>
+                    <SelectItem value="active">Активный</SelectItem>
+                    <SelectItem value="inactive">Неактивный</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -289,14 +289,14 @@ export default function StudentsPage() {
                 <CardContent className="space-y-4">
                   {/* Group */}
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Group</span>
+                    <span className="text-sm text-gray-600">Группа</span>
                     <Badge variant="outline">{student.group}</Badge>
                   </div>
 
                   {/* Progress */}
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Progress</span>
+                      <span className="text-sm text-gray-600">Прогресс</span>
                       <div className="flex items-center space-x-1">
                         {getProgressIcon(student.completedAssignments, student.totalAssignments)}
                         <span className="text-sm font-medium">
@@ -316,7 +316,7 @@ export default function StudentsPage() {
 
                   {/* Average Grade */}
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Average Grade</span>
+                    <span className="text-sm text-gray-600">Средняя оценка</span>
                     <span className={`text-lg font-bold ${getGradeColor(student.averageGrade)}`}>
                       {student.averageGrade}
                     </span>
@@ -324,7 +324,7 @@ export default function StudentsPage() {
 
                   {/* Last Activity */}
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Last Activity</span>
+                    <span className="text-gray-600">Последняя активность</span>
                     <span className="text-gray-900">
                       {new Date(student.lastActivity).toLocaleDateString()}
                     </span>
@@ -334,7 +334,7 @@ export default function StudentsPage() {
                   <Link href={`/students/${student.id}`} className="block">
                     <Button variant="outline" className="w-full">
                       <User className="h-4 w-4 mr-2" />
-                      View Profile
+                      Просмотреть профиль
                     </Button>
                   </Link>
                 </CardContent>
@@ -347,7 +347,7 @@ export default function StudentsPage() {
             <Card>
               <CardContent className="text-center py-12">
                 <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No students found</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">Студенты не найдены</h3>
                 <p className="text-gray-600">
                   {searchTerm || groupFilter !== 'all' || statusFilter !== 'all'
                     ? 'Try adjusting your search or filter criteria.'

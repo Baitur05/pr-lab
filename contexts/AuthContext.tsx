@@ -22,10 +22,10 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 // Mock users for demonstration
 const mockUsers: User[] = [
   { id: '1', name: 'Admin User', email: 'admin@university.edu', role: 'admin' },
-  { id: '2', name: 'Dr. Sarah Johnson', email: 'sarah.johnson@university.edu', role: 'teacher' },
-  { id: '3', name: 'John Smith', email: 'john.smith@student.edu', role: 'student', group: 'CS-301' },
-  { id: '4', name: 'Emma Wilson', email: 'emma.wilson@student.edu', role: 'student', group: 'CS-301' },
-  { id: '5', name: 'Prof. Michael Chen', email: 'michael.chen@university.edu', role: 'teacher' },
+  { id: '2', name: 'Lionel Andrés Messi ', email: 'lionel.andrés.messi10@university.edu', role: 'teacher' },
+  { id: '3', name: 'Neymar Jr', email: 'neymar.jr11@student.edu', role: 'student', group: 'CS-301' },
+  { id: '4', name: 'Thierry Daniel Henry', email: 'thierry.henry14@student.edu', role: 'student', group: 'CS-301' },
+  { id: '5', name: 'Cristiano Ronaldo dos Santos Aveiro', email: 'cristiano.ronaldo7@university.edu', role: 'teacher' },
 ];
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
