@@ -178,23 +178,23 @@ export default function AdminPage() {
       case "admin":
         return (
           <Badge variant="secondary" className="bg-red-100 text-red-800">
-            Admin
+            Админ
           </Badge>
         );
       case "teacher":
         return (
           <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-            Teacher
+            Преподаватель
           </Badge>
         );
       case "student":
         return (
           <Badge variant="secondary" className="bg-green-100 text-green-800">
-            Student
+            Студент
           </Badge>
         );
       default:
-        return <Badge variant="secondary">Unknown</Badge>;
+        return <Badge variant="secondary">Неизвестный</Badge>;
     }
   };
 
@@ -285,7 +285,7 @@ export default function AdminPage() {
   const handleDeleteUser = async (userId: string) => {
     if (
       !confirm(
-        "Are you sure you want to delete this user? This action cannot be undone."
+        "Вы уверены, что хотите удалить этого пользователя? Это действие невозможно отменить."
       )
     ) {
       return;
@@ -308,10 +308,10 @@ export default function AdminPage() {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              System Administration
+              Системное администрирование
             </h1>
             <p className="text-gray-600">
-              Manage users, groups, and system settings
+              Управление пользователями, группами и настройками системы
             </p>
           </div>
 
@@ -320,7 +320,7 @@ export default function AdminPage() {
             <Card className="border-l-4 border-l-blue-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  Total Users
+                  Общее количество пользователей
                 </CardTitle>
                 <Users className="h-4 w-4 text-blue-600" />
               </CardHeader>
@@ -329,14 +329,14 @@ export default function AdminPage() {
                   {mockUsers.length}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  {mockUsers.filter((u) => u.status === "active").length} active
+                  {mockUsers.filter((u) => u.status === "active").length} активный
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-emerald-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Teachers</CardTitle>
+                <CardTitle className="text-sm font-medium">Преподаватели</CardTitle>
                 <GraduationCap className="h-4 w-4 text-emerald-600" />
               </CardHeader>
               <CardContent>
@@ -344,14 +344,14 @@ export default function AdminPage() {
                   {mockUsers.filter((u) => u.role === "teacher").length}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Active instructors
+                  Активные преподаватели
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-orange-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Students</CardTitle>
+                <CardTitle className="text-sm font-medium">Студенты</CardTitle>
                 <User className="h-4 w-4 text-orange-600" />
               </CardHeader>
               <CardContent>
@@ -359,7 +359,7 @@ export default function AdminPage() {
                   {mockUsers.filter((u) => u.role === "student").length}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Enrolled students
+                  Зачисленные студенты
                 </p>
               </CardContent>
             </Card>
@@ -373,7 +373,7 @@ export default function AdminPage() {
                 <div className="text-2xl font-bold text-purple-600">
                   {mockGroups.length}
                 </div>
-                <p className="text-xs text-muted-foreground">Active groups</p>
+                <p className="text-xs text-muted-foreground">Активные группы</p>
               </CardContent>
             </Card>
           </div>
@@ -385,20 +385,20 @@ export default function AdminPage() {
             className="space-y-6"
           >
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="users">User Management</TabsTrigger>
-              <TabsTrigger value="groups">Group Management</TabsTrigger>
+              <TabsTrigger value="users">Управление пользователями</TabsTrigger>
+              <TabsTrigger value="groups">Управление группами</TabsTrigger>
             </TabsList>
 
             <TabsContent value="users" className="space-y-6">
               {/* User Management Header */}
               <div className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold text-gray-900">Users</h2>
+                <h2 className="text-xl font-semibold text-gray-900">Пользователи</h2>
                 <Button
                   onClick={() => setShowCreateUser(true)}
                   className="bg-blue-600 hover:bg-blue-700"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Add User
+                  Создать пользователя
                 </Button>
               </div>
 
@@ -409,7 +409,7 @@ export default function AdminPage() {
                     <div className="relative flex-1">
                       <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                       <Input
-                        placeholder="Search users..."
+                        placeholder="Поиск users..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="pl-10"
@@ -422,10 +422,10 @@ export default function AdminPage() {
                         <SelectValue placeholder="Filter by role" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">All Roles</SelectItem>
-                        <SelectItem value="admin">Admin</SelectItem>
-                        <SelectItem value="teacher">Teacher</SelectItem>
-                        <SelectItem value="student">Student</SelectItem>
+                        <SelectItem value="all">Роль</SelectItem>
+                        <SelectItem value="admin">Админ</SelectItem>
+                        <SelectItem value="teacher">Преподаватель</SelectItem>
+                        <SelectItem value="student">Студент</SelectItem>
                       </SelectContent>
                     </Select>
 
@@ -437,9 +437,9 @@ export default function AdminPage() {
                         <SelectValue placeholder="Filter by status" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">All Status</SelectItem>
-                        <SelectItem value="active">Active</SelectItem>
-                        <SelectItem value="inactive">Inactive</SelectItem>
+                        <SelectItem value="all">Статус</SelectItem>
+                        <SelectItem value="active">Активный</SelectItem>
+                        <SelectItem value="inactive">Неактивный</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -478,13 +478,13 @@ export default function AdminPage() {
                                 </div>
                                 {user.group && (
                                   <div>
-                                    <span>Group: {user.group}</span>
+                                    <span>Группа: {user.group}</span>
                                   </div>
                                 )}
                                 <div className="flex items-center space-x-1">
                                   <Calendar className="h-3 w-3" />
                                   <span>
-                                    Joined:{" "}
+                                    Присоединился:{" "}
                                     {new Date(
                                       user.createdAt
                                     ).toLocaleDateString()}
@@ -523,13 +523,13 @@ export default function AdminPage() {
             <TabsContent value="groups" className="space-y-6">
               {/* Group Management Header */}
               <div className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold text-gray-900">Groups</h2>
+                <h2 className="text-xl font-semibold text-gray-900">Группы</h2>
                 <Button
                   onClick={() => setShowCreateGroup(true)}
                   className="bg-blue-600 hover:bg-blue-700"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Create Group
+                  Создать группу
                 </Button>
               </div>
 
@@ -564,17 +564,17 @@ export default function AdminPage() {
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Teacher</span>
+                        <span className="text-sm text-gray-600">Преподаватель</span>
                         <span className="font-medium">{group.teacherName}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Students</span>
+                        <span className="text-sm text-gray-600">Студенты</span>
                         <span className="font-medium">
                           {group.studentCount}
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Created</span>
+                        <span className="text-sm text-gray-600">Создано</span>
                         <span className="font-medium">
                           {new Date(group.createdAt).toLocaleDateString()}
                         </span>
@@ -591,9 +591,9 @@ export default function AdminPage() {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
               <Card className="w-full max-w-md">
                 <CardHeader>
-                  <CardTitle>Create New User</CardTitle>
+                  <CardTitle>Создать нового пользователя</CardTitle>
                   <CardDescription>
-                    Add a new user to the system
+                    Добавьте нового пользователя в систему
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -605,7 +605,7 @@ export default function AdminPage() {
                     )}
 
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
+                      <Label htmlFor="name">ФИО</Label>
                       <Input
                         id="name"
                         value={newUser.name}
@@ -615,7 +615,7 @@ export default function AdminPage() {
                             name: e.target.value,
                           }))
                         }
-                        placeholder="Enter full name"
+                        placeholder="Введите полное имя"
                         required
                       />
                     </div>
@@ -632,13 +632,13 @@ export default function AdminPage() {
                             email: e.target.value,
                           }))
                         }
-                        placeholder="Enter email address"
+                        placeholder="Введите email"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="role">Role</Label>
+                      <Label htmlFor="role">Роль</Label>
                       <Select
                         value={newUser.role}
                         onValueChange={(
@@ -649,16 +649,16 @@ export default function AdminPage() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="student">Student</SelectItem>
-                          <SelectItem value="teacher">Teacher</SelectItem>
-                          <SelectItem value="admin">Admin</SelectItem>
+                          <SelectItem value="student">Студент</SelectItem>
+                          <SelectItem value="teacher">Преподаватель</SelectItem>
+                          <SelectItem value="admin">Админ</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
                     {newUser.role === "student" && (
                       <div className="space-y-2">
-                        <Label htmlFor="group">Group</Label>
+                        <Label htmlFor="group">Группа</Label>
                         <Select
                           value={newUser.group}
                           onValueChange={(value) =>
@@ -666,7 +666,7 @@ export default function AdminPage() {
                           }
                         >
                           <SelectTrigger>
-                            <SelectValue placeholder="Select a group" />
+                            <SelectValue placeholder="Выбрать группу" />
                           </SelectTrigger>
                           <SelectContent>
                             {groups.map((group) => (
@@ -686,13 +686,13 @@ export default function AdminPage() {
                         onClick={() => setShowCreateUser(false)}
                         disabled={isCreating}
                       >
-                        Cancel
+                        Отмена
                       </Button>
                       <Button type="submit" disabled={isCreating}>
                         {isCreating ? (
                           <>
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                            Creating...
+                            Создание...
                           </>
                         ) : (
                           "Create User"
@@ -710,8 +710,8 @@ export default function AdminPage() {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
               <Card className="w-full max-w-md">
                 <CardHeader>
-                  <CardTitle>Create New Group</CardTitle>
-                  <CardDescription>Create a new student group</CardDescription>
+                  <CardTitle>Создать новую группу</CardTitle>
+                  <CardDescription>Создать новую группу студентов</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleCreateGroup} className="space-y-4">
@@ -722,7 +722,7 @@ export default function AdminPage() {
                     )}
 
                     <div className="space-y-2">
-                      <Label htmlFor="groupName">Group Name</Label>
+                      <Label htmlFor="groupName">Название группы</Label>
                       <Input
                         id="groupName"
                         value={newGroup.name}
@@ -738,7 +738,7 @@ export default function AdminPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="description">Description</Label>
+                      <Label htmlFor="description">Описание</Label>
                       <Input
                         id="description"
                         value={newGroup.description}
@@ -753,7 +753,7 @@ export default function AdminPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="teacher">Assigned Teacher</Label>
+                      <Label htmlFor="teacher">Назначенный преподаватель</Label>
                       <Select
                         value={newGroup.teacherId}
                         onValueChange={(value) =>
@@ -761,7 +761,7 @@ export default function AdminPage() {
                         }
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a teacher" />
+                          <SelectValue placeholder="Выбрать преподавателя" />
                         </SelectTrigger>
                         <SelectContent>
                           {teachers.map((teacher) => (
@@ -780,16 +780,16 @@ export default function AdminPage() {
                         onClick={() => setShowCreateGroup(false)}
                         disabled={isCreatingGroup}
                       >
-                        Cancel
+                        Отмена
                       </Button>
                       <Button type="submit" disabled={isCreatingGroup}>
                         {isCreatingGroup ? (
                           <>
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                            Creating...
+                            Создание ...
                           </>
                         ) : (
-                          "Create Group"
+                          "Создать группу"
                         )}
                       </Button>
                     </div>

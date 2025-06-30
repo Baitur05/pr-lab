@@ -247,10 +247,10 @@ export default function AssignmentDetailPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <Card>
               <CardContent className="text-center py-12">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">Assignment Not Found</h2>
-                <p className="text-gray-600 mb-4">The assignment you're looking for doesn't exist.</p>
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">Задание не найдено</h2>
+                <p className="text-gray-600 mb-4">Задание, которое вы ищете, не существует.</p>
                 <Link href="/assignments">
-                  <Button>Back to Assignments</Button>
+                  <Button>Назад к заданиям</Button>
                 </Link>
               </CardContent>
             </Card>
@@ -270,7 +270,7 @@ export default function AssignmentDetailPage() {
             <Link href="/assignments">
               <Button variant="ghost" className="mb-4">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Assignments
+                Назад к заданиям
               </Button>
             </Link>
             
@@ -278,11 +278,11 @@ export default function AssignmentDetailPage() {
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">{assignment.title}</h1>
                 <div className="flex items-center space-x-4 text-sm text-gray-600">
-                  <span>Created by {assignment.createdBy}</span>
+                  <span>Создано{assignment.createdBy}</span>
                   <span>•</span>
-                  <span>Due: {new Date(assignment.deadline).toLocaleDateString()}</span>
+                  <span>Дедлайн: {new Date(assignment.deadline).toLocaleDateString()}</span>
                   <span>•</span>
-                  <span>Max Grade: {assignment.maxGrade} points</span>
+                  <span>Максимальный балл: {assignment.maxGrade} баллов</span>
                 </div>
               </div>
               
@@ -290,7 +290,7 @@ export default function AssignmentDetailPage() {
                 <Link href={`/assignments/edit/${assignment.id}`}>
                   <Button variant="outline">
                     <Edit className="h-4 w-4 mr-2" />
-                    Edit Assignment
+                    Редактировать задание
                   </Button>
                 </Link>
               )}
@@ -305,7 +305,7 @@ export default function AssignmentDetailPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <BookOpen className="h-5 w-5" />
-                    <span>Assignment Description</span>
+                    <span>Описание задания</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -323,7 +323,7 @@ export default function AssignmentDetailPage() {
                   <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
                       <FileText className="h-5 w-5" />
-                      <span>Assignment Materials</span>
+                      <span>Материалы задания</span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -332,12 +332,12 @@ export default function AssignmentDetailPage() {
                         <FileText className="h-6 w-6 text-blue-600" />
                         <div>
                           <p className="font-medium text-blue-900">{assignment.materialsFileName}</p>
-                          <p className="text-sm text-blue-600">Assignment materials and instructions</p>
+                          <p className="text-sm text-blue-600">Материалы и инструкции к заданию</p>
                         </div>
                       </div>
                       <Button variant="outline">
                         <Download className="h-4 w-4 mr-2" />
-                        Download
+                        Скачать
                       </Button>
                     </div>
                   </CardContent>
@@ -350,7 +350,7 @@ export default function AssignmentDetailPage() {
                   <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
                       <Upload className="h-5 w-5" />
-                      <span>Your Submission</span>
+                      <span>Ваше отправленное задание</span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -360,9 +360,9 @@ export default function AssignmentDetailPage() {
                           <div className="flex items-center space-x-3">
                             <CheckCircle className="h-6 w-6 text-green-600" />
                             <div>
-                              <p className="font-medium text-green-900">Submitted: {userSubmission.fileName}</p>
+                              <p className="font-medium text-green-900">Отправлено: {userSubmission.fileName}</p>
                               <p className="text-sm text-green-600">
-                                Submitted on {new Date(userSubmission.submittedAt).toLocaleDateString()}
+                                Сдано {new Date(userSubmission.submittedAt).toLocaleDateString()}
                               </p>
                             </div>
                           </div>
@@ -371,14 +371,14 @@ export default function AssignmentDetailPage() {
                               <div className={`text-2xl font-bold ${getGradeColor(userSubmission.grade, assignment.maxGrade)}`}>
                                 {userSubmission.grade}/{assignment.maxGrade}
                               </div>
-                              <div className="text-sm text-gray-600">Grade</div>
+                              <div className="text-sm text-gray-600">Оценка</div>
                             </div>
                           )}
                         </div>
 
                         {userSubmission.comment && (
                           <div className="p-4 bg-gray-50 rounded-lg">
-                            <h4 className="font-medium text-gray-900 mb-2">Instructor Feedback</h4>
+                            <h4 className="font-medium text-gray-900 mb-2">Отзыв преподавателя</h4>
                             <p className="text-gray-700">{userSubmission.comment}</p>
                           </div>
                         )}
@@ -389,7 +389,7 @@ export default function AssignmentDetailPage() {
                           <Alert variant="destructive">
                             <AlertCircle className="h-4 w-4" />
                             <AlertDescription>
-                              The deadline for this assignment has passed. You can no longer submit your work.
+                              Срок сдачи этого задания истёк. Вы больше не можете отправлять работу.
                             </AlertDescription>
                           </Alert>
                         ) : (
@@ -397,8 +397,8 @@ export default function AssignmentDetailPage() {
                             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                               <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                               <Label htmlFor="submission" className="cursor-pointer">
-                                <span className="text-lg font-medium text-gray-900">Upload your submission</span>
-                                <p className="text-gray-600 mt-1">Select a file to upload</p>
+                                <span className="text-lg font-medium text-gray-900">Загрузите вашу работу</span>
+                                <p className="text-gray-600 mt-1">Выберите файл для загрузки</p>
                                 <Input
                                   id="submission"
                                   type="file"
@@ -409,7 +409,7 @@ export default function AssignmentDetailPage() {
                               </Label>
                               {uploadFile && (
                                 <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                                  <p className="text-blue-800 font-medium">Selected: {uploadFile.name}</p>
+                                  <p className="text-blue-800 font-medium">Выбранный файл: {uploadFile.name}</p>
                                 </div>
                               )}
                             </div>
@@ -423,12 +423,12 @@ export default function AssignmentDetailPage() {
                                 {isSubmitting ? (
                                   <>
                                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                                    Submitting...
+                                   Отправка...
                                   </>
                                 ) : (
                                   <>
                                     <Upload className="h-4 w-4 mr-2" />
-                                    Submit Assignment
+                                    Отправить задание
                                   </>
                                 )}
                               </Button>
@@ -448,10 +448,11 @@ export default function AssignmentDetailPage() {
                     <CardTitle className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <User className="h-5 w-5" />
-                        <span>Student Submissions</span>
+                        <span>Работы студентов</span>
                       </div>
                       <Badge variant="secondary">
-                        {submissions.length} submissions
+                        {submissions.length} Работы
+
                       </Badge>
                     </CardTitle>
                   </CardHeader>
@@ -471,12 +472,12 @@ export default function AssignmentDetailPage() {
                                     {submission.grade}/{assignment.maxGrade}
                                   </div>
                                   <Badge variant="secondary" className="bg-green-100 text-green-800">
-                                    Graded
+                                    Проверено
                                   </Badge>
                                 </div>
                               ) : (
                                 <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
-                                  Pending
+                                  В ожидании
                                 </Badge>
                               )}
                             </div>
@@ -487,7 +488,7 @@ export default function AssignmentDetailPage() {
                               <FileText className="h-4 w-4 text-gray-400" />
                               <span className="text-sm font-medium">{submission.fileName}</span>
                               <span className="text-xs text-gray-500">
-                                Submitted {new Date(submission.submittedAt).toLocaleDateString()}
+                                Отправлено {new Date(submission.submittedAt).toLocaleDateString()}
                               </span>
                             </div>
                             
@@ -505,7 +506,7 @@ export default function AssignmentDetailPage() {
                                   }}
                                 >
                                   <Star className="h-4 w-4 mr-1" />
-                                  Grade
+                                  Оценка
                                 </Button>
                               )}
                             </div>
@@ -521,7 +522,7 @@ export default function AssignmentDetailPage() {
 
                       {submissions.length === 0 && (
                         <div className="text-center py-8 text-gray-500">
-                          No submissions yet
+                          Пока нет сдач от студентов.
                         </div>
                       )}
                     </div>
@@ -537,19 +538,19 @@ export default function AssignmentDetailPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <Clock className="h-5 w-5" />
-                    <span>Deadline</span>
+                    <span>Дедлайн</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Due Date</span>
+                      <span className="text-sm text-gray-600">Срок выполнения</span>
                       <span className="font-medium">
                         {new Date(assignment.deadline).toLocaleDateString()}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Time</span>
+                      <span className="text-sm text-gray-600">Время</span>
                       <span className="font-medium">
                         {new Date(assignment.deadline).toLocaleTimeString()}
                       </span>
@@ -557,11 +558,11 @@ export default function AssignmentDetailPage() {
                     <div className="pt-2 border-t">
                       {isDeadlinePassed() ? (
                         <Badge variant="destructive" className="w-full justify-center">
-                          Deadline Passed
+                          Дедлайн истёк
                         </Badge>
                       ) : (
                         <Badge variant="secondary" className="w-full justify-center">
-                          {getDaysUntilDeadline()} days remaining
+                          {getDaysUntilDeadline()} осталось дней
                         </Badge>
                       )}
                     </div>
@@ -572,22 +573,22 @@ export default function AssignmentDetailPage() {
               {/* Assignment Stats */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Assignment Stats</CardTitle>
+                  <CardTitle>Данные по заданию</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Max Grade</span>
-                      <span className="font-medium">{assignment.maxGrade} points</span>
+                      <span className="text-sm text-gray-600">Максимальная оценка</span>
+                      <span className="font-medium">{assignment.maxGrade} баллы</span>
                     </div>
                     {(user?.role === 'teacher' || user?.role === 'admin') && (
                       <>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-600">Submissions</span>
+                          <span className="text-sm text-gray-600">Работы</span>
                           <span className="font-medium">{submissions.length}</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-600">Graded</span>
+                          <span className="text-sm text-gray-600">Оценено</span>
                           <span className="font-medium">
                             {submissions.filter(s => s.status === 'graded').length}
                           </span>
@@ -595,7 +596,7 @@ export default function AssignmentDetailPage() {
                       </>
                     )}
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Created</span>
+                      <span className="text-sm text-gray-600">Создано</span>
                       <span className="font-medium">
                         {new Date(assignment.createdAt).toLocaleDateString()}
                       </span>
@@ -611,14 +612,14 @@ export default function AssignmentDetailPage() {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
               <Card className="w-full max-w-md">
                 <CardHeader>
-                  <CardTitle>Grade Submission</CardTitle>
+                  <CardTitle>Поставить оценку</CardTitle>
                   <CardDescription>
-                    Grade submission by {gradingSubmission.studentName}
+                    Поставить оценку работе {gradingSubmission.studentName}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <Label htmlFor="grade">Grade (out of {assignment.maxGrade})</Label>
+                    <Label htmlFor="grade">Оценка (out of {assignment.maxGrade})</Label>
                     <Input
                       id="grade"
                       type="number"
@@ -631,7 +632,7 @@ export default function AssignmentDetailPage() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="comment">Feedback (optional)</Label>
+                    <Label htmlFor="comment">Отзыв (optional)</Label>
                     <Textarea
                       id="comment"
                       value={gradeComment}
@@ -647,7 +648,7 @@ export default function AssignmentDetailPage() {
                       onClick={() => setGradingSubmission(null)}
                       disabled={isGrading}
                     >
-                      Cancel
+                      Отмена
                     </Button>
                     <Button 
                       onClick={handleGradeSubmission}
@@ -656,7 +657,7 @@ export default function AssignmentDetailPage() {
                       {isGrading ? (
                         <>
                           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                          Saving...
+                          Сохранение...
                         </>
                       ) : (
                         'Save Grade'

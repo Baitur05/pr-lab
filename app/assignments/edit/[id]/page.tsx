@@ -222,10 +222,10 @@ export default function EditAssignmentPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <Card>
               <CardContent className="text-center py-12">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">Assignment Not Found</h2>
-                <p className="text-gray-600 mb-4">The assignment you're looking for doesn't exist.</p>
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">Задание не найдено</h2>
+                <p className="text-gray-600 mb-4">Задание, которое вы ищете, не существует.</p>
                 <Link href="/assignments">
-                  <Button>Back to Assignments</Button>
+                  <Button>Назад к заданиям</Button>
                 </Link>
               </CardContent>
             </Card>
@@ -246,12 +246,12 @@ export default function EditAssignmentPage() {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="h-8 w-8 text-green-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Assignment Updated Successfully!</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Задание успешно обновлено!</h2>
                 <p className="text-gray-600 mb-6">
-                  "{formData.title}" has been updated and changes are now live.
+                  "{formData.title}" обновлено, и изменения теперь активны.
                 </p>
                 <Link href="/assignments">
-                  <Button>Back to Assignments</Button>
+                  <Button>Назад к заданиям</Button>
                 </Link>
               </CardContent>
             </Card>
@@ -271,14 +271,14 @@ export default function EditAssignmentPage() {
             <Link href="/assignments">
               <Button variant="ghost" className="mb-4">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Assignments
+                Назад к заданиям
               </Button>
             </Link>
             <div className="flex justify-between items-start">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">Edit Assignment</h1>
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">Редактировать задание</h1>
                 <p className="text-gray-600">
-                  Update the details for "{assignment.title}"
+                  Обновить данные для "{assignment.title}"
                 </p>
               </div>
               <Button 
@@ -287,7 +287,7 @@ export default function EditAssignmentPage() {
                 disabled={isLoading}
               >
                 <Trash2 className="h-4 w-4 mr-2" />
-                Delete Assignment
+                Удалить задание
               </Button>
             </div>
           </div>
@@ -297,10 +297,10 @@ export default function EditAssignmentPage() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <BookOpen className="h-5 w-5" />
-                <span>Assignment Details</span>
+                <span>Детали задания</span>
               </CardTitle>
               <CardDescription>
-                Update the information for this laboratory assignment
+                Обновить информацию по этой лабораторной работе
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -313,7 +313,7 @@ export default function EditAssignmentPage() {
 
                 {/* Title */}
                 <div className="space-y-2">
-                  <Label htmlFor="title">Assignment Title *</Label>
+                  <Label htmlFor="title">Название задания *</Label>
                   <Input
                     id="title"
                     name="title"
@@ -327,7 +327,7 @@ export default function EditAssignmentPage() {
 
                 {/* Description */}
                 <div className="space-y-2">
-                  <Label htmlFor="description">Description *</Label>
+                  <Label htmlFor="description">Описание *</Label>
                   <Textarea
                     id="description"
                     name="description"
@@ -342,7 +342,7 @@ export default function EditAssignmentPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Deadline */}
                   <div className="space-y-2">
-                    <Label htmlFor="deadline">Deadline *</Label>
+                    <Label htmlFor="deadline">Дедлайн *</Label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                       <Input
@@ -359,7 +359,7 @@ export default function EditAssignmentPage() {
 
                   {/* Max Grade */}
                   <div className="space-y-2">
-                    <Label htmlFor="maxGrade">Maximum Grade</Label>
+                    <Label htmlFor="maxGrade">Максимальная оценка</Label>
                     <Input
                       id="maxGrade"
                       name="maxGrade"
@@ -376,7 +376,7 @@ export default function EditAssignmentPage() {
                 {/* Current Materials */}
                 {assignment.materialsFileName && !formData.removeMaterials && (
                   <div className="space-y-2">
-                    <Label>Current Materials</Label>
+                    <Label>Доступные материалы</Label>
                     <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                       <div className="flex items-center space-x-2">
                         <FileText className="h-4 w-4 text-blue-600" />
@@ -390,7 +390,7 @@ export default function EditAssignmentPage() {
                         size="sm"
                         onClick={handleRemoveMaterials}
                       >
-                        Remove
+                        Удалить
                       </Button>
                     </div>
                   </div>
@@ -407,7 +407,7 @@ export default function EditAssignmentPage() {
                     <Upload className="h-8 w-8 text-gray-400 mx-auto mb-2" />
                     <Label htmlFor="materials" className="cursor-pointer">
                       <span className="text-sm text-gray-600">
-                        Click to upload assignment materials (PDF, DOC, ZIP)
+                        Нажмите, чтобы загрузить материалы задания (PDF, DOC, ZIP)
                       </span>
                       <Input
                         id="materials"
@@ -419,12 +419,12 @@ export default function EditAssignmentPage() {
                     </Label>
                     {formData.materials && (
                       <div className="mt-2 text-sm text-blue-600">
-                        Selected: {formData.materials.name}
+                        Выбрано: {formData.materials.name}
                       </div>
                     )}
                   </div>
                   <p className="text-xs text-gray-500">
-                    Upload materials like instructions, starter files, or reference documents (Max 10MB)
+                    Загрузите материалы, такие как инструкции, стартовые файлы или справочные документы (максимум 10 МБ)
                   </p>
                 </div>
 
@@ -432,19 +432,19 @@ export default function EditAssignmentPage() {
                 <div className="flex justify-end space-x-4 pt-6 border-t">
                   <Link href="/assignments">
                     <Button type="button" variant="outline">
-                      Cancel
+                      Отмена
                     </Button>
                   </Link>
                   <Button type="submit" disabled={isSaving} className="bg-blue-600 hover:bg-blue-700">
                     {isSaving ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Saving...
+                        Сохранение изменений...
                       </>
                     ) : (
                       <>
                         <Save className="h-4 w-4 mr-2" />
-                        Save Changes
+                        Сохранить задание
                       </>
                     )}
                   </Button>

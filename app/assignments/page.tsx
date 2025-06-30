@@ -111,17 +111,17 @@ export default function AssignmentsPage() {
   const getStatusBadge = (status: string, deadline?: string) => {
     switch (status) {
       case 'not-started':
-        return <Badge variant="secondary" className="bg-gray-100 text-gray-800">Not Started</Badge>;
+        return <Badge variant="secondary" className="bg-gray-100 text-gray-800">Не начато</Badge>;
       case 'in-progress':
-        return <Badge variant="secondary" className="bg-blue-100 text-blue-800">In Progress</Badge>;
+        return <Badge variant="secondary" className="bg-blue-100 text-blue-800">В процессе</Badge>;
       case 'submitted':
-        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">Submitted</Badge>;
+        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">Сдано</Badge>;
       case 'graded':
-        return <Badge variant="secondary" className="bg-green-100 text-green-800">Graded</Badge>;
+        return <Badge variant="secondary" className="bg-green-100 text-green-800">Проверено</Badge>;
       case 'overdue':
-        return <Badge variant="destructive">Overdue</Badge>;
+        return <Badge variant="destructive">Срок истёк</Badge>;
       default:
-        return <Badge variant="secondary">Unknown</Badge>;
+        return <Badge variant="secondary">Неизвестно</Badge>;
     }
   };
 
@@ -170,7 +170,7 @@ export default function AssignmentsPage() {
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Laboratory Assignments</h1>
+              <h1 className="text-3xl font-bold text-gray-900">Лабораторные работы</h1>
               <p className="text-gray-600 mt-1">
                 {user?.role === 'student' ? 'Complete your database laboratory assignments' : 
                  user?.role === 'teacher' ? 'Manage and grade student assignments' :
@@ -181,7 +181,7 @@ export default function AssignmentsPage() {
               <Link href="/assignments/create">
                 <Button className="bg-blue-600 hover:bg-blue-700">
                   <Plus className="h-4 w-4 mr-2" />
-                  Create Assignment
+                  Создать задание
                 </Button>
               </Link>
             )}
@@ -190,8 +190,8 @@ export default function AssignmentsPage() {
           {/* Tabs */}
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="list">Assignment List</TabsTrigger>
-              <TabsTrigger value="deadlines">Deadlines</TabsTrigger>
+              <TabsTrigger value="list">Список заданий</TabsTrigger>
+              <TabsTrigger value="deadlines">Дедлайны</TabsTrigger>
             </TabsList>
 
             <TabsContent value="list" className="space-y-6">
@@ -214,12 +214,12 @@ export default function AssignmentsPage() {
                         <SelectValue placeholder="Filter by status" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">All Status</SelectItem>
-                        <SelectItem value="not-started">Not Started</SelectItem>
-                        <SelectItem value="in-progress">In Progress</SelectItem>
-                        <SelectItem value="submitted">Submitted</SelectItem>
-                        <SelectItem value="graded">Graded</SelectItem>
-                        <SelectItem value="overdue">Overdue</SelectItem>
+                        <SelectItem value="all">Все статусы</SelectItem>
+                        <SelectItem value="not-started">Ещё не начато</SelectItem>
+                        <SelectItem value="in-progress">В процессе</SelectItem>
+                        <SelectItem value="submitted">Сдано</SelectItem>
+                        <SelectItem value="graded">Проверено</SelectItem>
+                        <SelectItem value="overdue">Срок истёк</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -257,10 +257,10 @@ export default function AssignmentsPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2 text-sm text-gray-600">
                           <Calendar className="h-4 w-4" />
-                          <span>Due: {new Date(assignment.deadline).toLocaleDateString()}</span>
+                          <span>Срок сдачи: {new Date(assignment.deadline).toLocaleDateString()}</span>
                           {isDeadlineSoon(assignment.deadline) && (
                             <Badge variant="outline" className="text-orange-600 border-orange-600">
-                              Soon
+                              Скоро
                             </Badge>
                           )}
                         </div>
@@ -270,7 +270,7 @@ export default function AssignmentsPage() {
                       {assignment.status === 'graded' && assignment.grade !== undefined && (
                         <div className="bg-green-50 p-3 rounded-lg">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium text-green-800">Grade</span>
+                            <span className="text-sm font-medium text-green-800">Оценка</span>
                             <span className="text-lg font-bold text-green-600">
                               {assignment.grade}/{assignment.maxGrade}
                             </span>
@@ -281,7 +281,7 @@ export default function AssignmentsPage() {
                       {(user?.role === 'teacher' || user?.role === 'admin') && assignment.submissionCount !== undefined && (
                         <div className="bg-blue-50 p-3 rounded-lg">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium text-blue-800">Submissions</span>
+                            <span className="text-sm font-medium text-blue-800">Отправленные работы</span>
                             <span className="text-lg font-bold text-blue-600">
                               {assignment.submissionCount}/{assignment.totalStudents}
                             </span>
@@ -293,7 +293,7 @@ export default function AssignmentsPage() {
                         <Link href={`/assignments/${assignment.id}`} className="flex-1">
                           <Button variant="outline" className="w-full">
                             <FileText className="h-4 w-4 mr-2" />
-                            View Details
+                            Просмотреть детали
                           </Button>
                         </Link>
                         {assignment.hasFiles && (
@@ -311,7 +311,7 @@ export default function AssignmentsPage() {
                 <Card>
                   <CardContent className="text-center py-12">
                     <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No assignments found</h3>
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">Задания не найдены</h3>
                     <p className="text-gray-600">
                       {searchTerm || statusFilter !== 'all' 
                         ? 'Try adjusting your search or filter criteria.' 
@@ -325,9 +325,9 @@ export default function AssignmentsPage() {
             <TabsContent value="deadlines" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Upcoming Deadlines</CardTitle>
+                  <CardTitle>Предстоящие дедлайны</CardTitle>
                   <CardDescription>
-                    Stay on top of your assignment deadlines
+                    Следите за сроками сдачи заданий
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -344,7 +344,7 @@ export default function AssignmentsPage() {
                                 {assignment.title}
                               </h3>
                             </Link>
-                            <p className="text-sm text-gray-600">Due: {new Date(assignment.deadline).toLocaleDateString()}</p>
+                            <p className="text-sm text-gray-600">Дата сдачи: {new Date(assignment.deadline).toLocaleDateString()}</p>
                           </div>
                         </div>
                         <div className="flex items-center space-x-3">
@@ -354,18 +354,18 @@ export default function AssignmentsPage() {
                                 assignment.daysUntilDeadline <= 3 ? 'text-red-600' : 
                                 assignment.daysUntilDeadline <= 7 ? 'text-orange-600' : 'text-green-600'
                               }`}>
-                                {assignment.daysUntilDeadline} days left
+                                {assignment.daysUntilDeadline} Осталось дней
                               </span>
                             ) : assignment.daysUntilDeadline === 0 ? (
-                              <span className="text-sm font-medium text-red-600">Due today</span>
+                              <span className="text-sm font-medium text-red-600">Сдача сегодня</span>
                             ) : (
                               <span className="text-sm font-medium text-red-600">
-                                {Math.abs(assignment.daysUntilDeadline)} days overdue
+                                {Math.abs(assignment.daysUntilDeadline)} просрочено на дней
                               </span>
                             )}
                             {(user?.role === 'teacher' || user?.role === 'admin') && (
                               <p className="text-xs text-gray-500">
-                                {assignment.submissionCount}/{assignment.totalStudents} submitted
+                                {assignment.submissionCount}/{assignment.totalStudents} Сдано
                               </p>
                             )}
                           </div>

@@ -48,31 +48,31 @@ export default function DashboardPage() {
 
   const mockRecentActivity = {
     admin: [
-      { id: 1, action: 'New user registered', user: 'John Smith', time: '2 hours ago', type: 'user' },
-      { id: 2, action: 'Assignment created', user: 'Dr. Johnson', time: '4 hours ago', type: 'assignment' },
-      { id: 3, action: 'Group updated', user: 'Admin', time: '1 day ago', type: 'group' }
+      { id: 1, action: 'Новый пользователь зарегистрирован', user: 'Kylian Mbappé', time: '2 часа назад', type: 'user' },
+      { id: 2, action: 'Задание создано', user: 'Lionel Andrés Messi', time: '4 часа назад', type: 'assignment' },
+      { id: 3, action: 'Группа обновлена', user: 'Admin', time: '1 день назад', type: 'group' }
     ],
     teacher: [
-      { id: 1, action: 'Assignment submitted', user: 'Emma Wilson', time: '1 hour ago', type: 'submission' },
-      { id: 2, action: 'Grade given', user: 'Michael Chen', time: '3 hours ago', type: 'grade' },
-      { id: 3, action: 'New assignment created', user: 'You', time: '1 day ago', type: 'assignment' }
+      { id: 1, action: 'Задание отправлено', user: 'Lionel Andrés Messi', time: '1 час назад', type: 'submission' },
+      { id: 2, action: 'Grade given', user: 'Michael Chen', time: '3 часа назад', type: 'grade' },
+      { id: 3, action: 'New assignment created', user: 'You', time: '1 день назад', type: 'assignment' }
     ],
     student: [
-      { id: 1, action: 'Grade received', assignment: 'PostgreSQL Tables', time: '2 hours ago', type: 'grade' },
-      { id: 2, action: 'Assignment submitted', assignment: 'JOIN Queries', time: '1 day ago', type: 'submission' },
-      { id: 3, action: 'New assignment', assignment: 'Database Optimization', time: '2 days ago', type: 'assignment' }
+      { id: 1, action: 'Получена оценка', assignment: 'PostgreSQL Tables', time: '2 часа назад', type: 'grade' },
+      { id: 2, action: 'Задание отправлено', assignment: 'JOIN Queries', time: '1 день назад', type: 'submission' },
+      { id: 3, action: 'Новая задание', assignment: 'Database Optimization', time: '2 дня назад', type: 'assignment' }
     ]
   };
 
   const upcomingDeadlines = [
-    { id: 1, title: 'Database Optimization', deadline: 'Dec 25, 2024', status: 'pending' },
-    { id: 2, title: 'API Development', deadline: 'Dec 28, 2024', status: 'in-progress' },
-    { id: 3, title: 'Final Project', deadline: 'Jan 15, 2025', status: 'not-started' }
+    { id: 1, title: 'Database Optimization', deadline: 'Dec 25, 2024', status: 'В ожидании' },
+    { id: 2, title: 'API Development', deadline: 'Dec 28, 2024', status: 'в процессе' },
+    { id: 3, title: 'Финальный проект', deadline: 'Jan 15, 2025', status: 'Не начато' }
   ];
 
   const getWelcomeMessage = () => {
     const hour = new Date().getHours();
-    const timeGreeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+    const timeGreeting = hour < 12 ? 'Доброе утро' : hour < 18 ? 'Добрый день' : 'Добрый вечер';
     return `${timeGreeting}, ${user?.name}!`;
   };
 
@@ -90,13 +90,13 @@ export default function DashboardPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'pending':
-        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">Pending</Badge>;
+        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">В ожидании</Badge>;
       case 'in-progress':
-        return <Badge variant="secondary" className="bg-blue-100 text-blue-800">In Progress</Badge>;
+        return <Badge variant="secondary" className="bg-blue-100 text-blue-800">В процессе</Badge>;
       case 'not-started':
-        return <Badge variant="secondary" className="bg-gray-100 text-gray-800">Not Started</Badge>;
+        return <Badge variant="secondary" className="bg-gray-100 text-gray-800">Не начато</Badge>;
       default:
-        return <Badge variant="secondary">Unknown</Badge>;
+        return <Badge variant="secondary">Неизвестно</Badge>;
     }
   };
 
@@ -107,42 +107,42 @@ export default function DashboardPage() {
         <>
           <Card className="border-l-4 border-l-blue-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Users</CardTitle>
+              <CardTitle className="text-sm font-medium">Всего пользователей</CardTitle>
               <Users className="h-4 w-4 text-blue-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-blue-600">{stats.totalUsers}</div>
-              <p className="text-xs text-muted-foreground">+12 from last month</p>
+              <p className="text-xs text-muted-foreground">+12 за прошлый месяц</p>
             </CardContent>
           </Card>
           <Card className="border-l-4 border-l-emerald-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Assignments</CardTitle>
+              <CardTitle className="text-sm font-medium">Всего заданий</CardTitle>
               <BookOpen className="h-4 w-4 text-emerald-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-emerald-600">{stats.totalAssignments}</div>
-              <p className="text-xs text-muted-foreground">+3 this week</p>
+              <p className="text-xs text-muted-foreground">+3 за эту неделю</p>
             </CardContent>
           </Card>
           <Card className="border-l-4 border-l-orange-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Active Groups</CardTitle>
+              <CardTitle className="text-sm font-medium">Активные группы</CardTitle>
               <Users className="h-4 w-4 text-orange-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-orange-600">{stats.totalGroups}</div>
-              <p className="text-xs text-muted-foreground">All groups active</p>
+              <p className="text-xs text-muted-foreground">Все группы активны</p>
             </CardContent>
           </Card>
           <Card className="border-l-4 border-l-purple-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Active Submissions</CardTitle>
+              <CardTitle className="text-sm font-medium">Активные сдачи</CardTitle>
               <TrendingUp className="h-4 w-4 text-purple-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-purple-600">{stats.activeSubmissions}</div>
-              <p className="text-xs text-muted-foreground">+18 today</p>
+              <p className="text-xs text-muted-foreground">+18 за сегодня</p>
             </CardContent>
           </Card>
         </>
@@ -153,42 +153,42 @@ export default function DashboardPage() {
         <>
           <Card className="border-l-4 border-l-blue-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">My Assignments</CardTitle>
+              <CardTitle className="text-sm font-medium">Мои задания</CardTitle>
               <BookOpen className="h-4 w-4 text-blue-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-blue-600">{stats.totalAssignments}</div>
-              <p className="text-xs text-muted-foreground">Active assignments</p>
+              <p className="text-xs text-muted-foreground">Активные задания</p>
             </CardContent>
           </Card>
           <Card className="border-l-4 border-l-emerald-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">My Students</CardTitle>
+              <CardTitle className="text-sm font-medium">Мои студенты</CardTitle>
               <Users className="h-4 w-4 text-emerald-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-emerald-600">{stats.totalStudents}</div>
-              <p className="text-xs text-muted-foreground">Across 3 groups</p>
+              <p className="text-xs text-muted-foreground">В 3 группах</p>
             </CardContent>
           </Card>
           <Card className="border-l-4 border-l-orange-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Pending Grades</CardTitle>
+              <CardTitle className="text-sm font-medium">Оценки в ожидании</CardTitle>
               <Clock className="h-4 w-4 text-orange-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-orange-600">{stats.pendingGrades}</div>
-              <p className="text-xs text-muted-foreground">Need review</p>
+              <p className="text-xs text-muted-foreground">Нужно проверить</p>
             </CardContent>
           </Card>
           <Card className="border-l-4 border-l-purple-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Completed</CardTitle>
+              <CardTitle className="text-sm font-medium">Выполнено</CardTitle>
               <CheckCircle className="h-4 w-4 text-purple-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-purple-600">{stats.completedSubmissions}</div>
-              <p className="text-xs text-muted-foreground">Graded submissions</p>
+              <p className="text-xs text-muted-foreground">Проверенные сдачи</p>
             </CardContent>
           </Card>
         </>
@@ -199,17 +199,17 @@ export default function DashboardPage() {
         <>
           <Card className="border-l-4 border-l-blue-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Assignments</CardTitle>
+              <CardTitle className="text-sm font-medium">Всего заданий</CardTitle>
               <BookOpen className="h-4 w-4 text-blue-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-blue-600">{stats.totalAssignments}</div>
-              <p className="text-xs text-muted-foreground">This semester</p>
+              <p className="text-xs text-muted-foreground">Этот семестр</p>
             </CardContent>
           </Card>
           <Card className="border-l-4 border-l-emerald-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Completed</CardTitle>
+              <CardTitle className="text-sm font-medium">Завершено</CardTitle>
               <CheckCircle className="h-4 w-4 text-emerald-600" />
             </CardHeader>
             <CardContent>
@@ -219,22 +219,22 @@ export default function DashboardPage() {
           </Card>
           <Card className="border-l-4 border-l-orange-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Pending</CardTitle>
+              <CardTitle className="text-sm font-medium">В ожидании</CardTitle>
               <Clock className="h-4 w-4 text-orange-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-orange-600">{stats.pendingAssignments}</div>
-              <p className="text-xs text-muted-foreground">Need submission</p>
+              <p className="text-xs text-muted-foreground">Нужно сдать работу</p>
             </CardContent>
           </Card>
           <Card className="border-l-4 border-l-red-600">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Upcoming Deadlines</CardTitle>
+              <CardTitle className="text-sm font-medium">Предстоящие дедлайны</CardTitle>
               <AlertCircle className="h-4 w-4 text-red-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-red-600">{stats.upcomingDeadlines}</div>
-              <p className="text-xs text-muted-foreground">Next 7 days</p>
+              <p className="text-xs text-muted-foreground">Ближайшие 7 дней</p>
             </CardContent>
           </Card>
         </>
@@ -249,19 +249,19 @@ export default function DashboardPage() {
           <Link href="/admin">
             <Button className="w-full h-20 flex flex-col space-y-2 bg-blue-600 hover:bg-blue-700">
               <Users className="h-6 w-6" />
-              <span>Manage Users</span>
+              <span>Управление пользователями</span>
             </Button>
           </Link>
           <Link href="/assignments">
             <Button className="w-full h-20 flex flex-col space-y-2 bg-emerald-600 hover:bg-emerald-700">
               <BookOpen className="h-6 w-6" />
-              <span>View Assignments</span>
+              <span>Просмотреть задания</span>
             </Button>
           </Link>
           <Link href="/reports">
             <Button className="w-full h-20 flex flex-col space-y-2 bg-orange-600 hover:bg-orange-700">
               <BarChart3 className="h-6 w-6" />
-              <span>System Reports</span>
+              <span>Отчёты системы</span>
             </Button>
           </Link>
         </div>
@@ -272,25 +272,25 @@ export default function DashboardPage() {
           <Link href="/assignments/create">
             <Button className="w-full h-20 flex flex-col space-y-2 bg-blue-600 hover:bg-blue-700">
               <Plus className="h-6 w-6" />
-              <span>Create Assignment</span>
+              <span>Создать задание</span>
             </Button>
           </Link>
           <Link href="/assignments">
             <Button className="w-full h-20 flex flex-col space-y-2 bg-emerald-600 hover:bg-emerald-700">
               <BookOpen className="h-6 w-6" />
-              <span>View Assignments</span>
+              <span>Просмотреть задания</span>
             </Button>
           </Link>
           <Link href="/students">
             <Button className="w-full h-20 flex flex-col space-y-2 bg-orange-600 hover:bg-orange-700">
               <Users className="h-6 w-6" />
-              <span>My Students</span>
+              <span>Мои студенты</span>
             </Button>
           </Link>
           <Link href="/reports">
             <Button className="w-full h-20 flex flex-col space-y-2 bg-purple-600 hover:bg-purple-700">
               <BarChart3 className="h-6 w-6" />
-              <span>Grade Reports</span>
+              <span>Отчёты об успеваемости</span>
             </Button>
           </Link>
         </div>
@@ -301,19 +301,19 @@ export default function DashboardPage() {
           <Link href="/assignments">
             <Button className="w-full h-20 flex flex-col space-y-2 bg-blue-600 hover:bg-blue-700">
               <BookOpen className="h-6 w-6" />
-              <span>My Assignments</span>
+              <span>Мои задания</span>
             </Button>
           </Link>
           <Link href="/assignments">
             <Button className="w-full h-20 flex flex-col space-y-2 bg-emerald-600 hover:bg-emerald-700">
               <CheckCircle className="h-6 w-6" />
-              <span>My Grades</span>
+              <span>Мои оценки</span>
             </Button>
           </Link>
           <Link href="/assignments">
             <Button className="w-full h-20 flex flex-col space-y-2 bg-orange-600 hover:bg-orange-700">
               <Calendar className="h-6 w-6" />
-              <span>Deadlines</span>
+              <span>Дедлайны</span>
             </Button>
           </Link>
         </div>
@@ -330,9 +330,9 @@ export default function DashboardPage() {
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">{getWelcomeMessage()}</h1>
             <p className="text-gray-600">
-              {user?.role === 'admin' && 'Manage the laboratory practicum system and oversee all activities.'}
-              {user?.role === 'teacher' && 'Create assignments, grade submissions, and track student progress.'}
-              {user?.role === 'student' && 'Complete your database laboratory assignments and track your progress.'}
+              {user?.role === 'admin' && 'Управлять системой лабораторного практикума и контролировать все виды деятельности.'}
+              {user?.role === 'teacher' && 'Создавать задания, оценивать работы и отслеживать прогресс студентов.'}
+              {user?.role === 'student' && 'Выполняйте лабораторные задания по базам данных и отслеживайте свой прогресс.'}
             </p>
           </div>
 
@@ -344,8 +344,8 @@ export default function DashboardPage() {
           {/* Quick Actions */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
-              <CardDescription>Frequently used features for your role</CardDescription>
+              <CardTitle>Быстрые операции</CardTitle>
+              <CardDescription>Часто используемые функции для вашей роли</CardDescription>
             </CardHeader>
             <CardContent>
               {renderQuickActions()}
@@ -356,8 +356,8 @@ export default function DashboardPage() {
             {/* Recent Activity */}
             <Card>
               <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
-                <CardDescription>Latest updates in the system</CardDescription>
+                <CardTitle>Последняя активность</CardTitle>
+                <CardDescription>Последние обновления в системе</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -407,15 +407,15 @@ export default function DashboardPage() {
             ) : (
               <Card>
                 <CardHeader>
-                  <CardTitle>System Overview</CardTitle>
-                  <CardDescription>Key metrics at a glance</CardDescription>
+                  <CardTitle>Обзор системы</CardTitle>
+                  <CardDescription>Ключевые метрики в одном обзоре</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <BookOpen className="h-5 w-5 text-blue-600" />
-                        <span className="font-medium">Active Assignments</span>
+                        <span className="font-medium">Активные задания</span>
                       </div>
                       <span className="text-blue-600 font-bold">
                         {user?.role === 'admin' ? '18' : '12'}
@@ -424,7 +424,7 @@ export default function DashboardPage() {
                     <div className="flex items-center justify-between p-3 bg-emerald-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <Users className="h-5 w-5 text-emerald-600" />
-                        <span className="font-medium">Active Students</span>
+                        <span className="font-medium">Активные студенты</span>
                       </div>
                       <span className="text-emerald-600 font-bold">
                         {user?.role === 'admin' ? '247' : '45'}
@@ -433,7 +433,7 @@ export default function DashboardPage() {
                     <div className="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <TrendingUp className="h-5 w-5 text-orange-600" />
-                        <span className="font-medium">Completion Rate</span>
+                        <span className="font-medium">Процент выполнения</span>
                       </div>
                       <span className="text-orange-600 font-bold">87%</span>
                     </div>

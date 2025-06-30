@@ -51,24 +51,24 @@ export default function Navigation() {
 
   const getNavigationItems = () => {
     const baseItems = [
-      { href: '/dashboard', label: 'Dashboard', icon: Home },
-      { href: '/assignments', label: 'Assignments', icon: BookOpen },
+      { href: '/dashboard', label: 'Главная страница', icon: Home },
+      { href: '/assignments', label: 'Список заданий', icon: BookOpen },
     ];
 
     if (user.role === 'admin') {
       return [
         ...baseItems,
-        { href: '/admin', label: 'Admin Panel', icon: Shield },
-        { href: '/students', label: 'All Students', icon: Users },
-        { href: '/reports', label: 'Reports', icon: BarChart3 },
+        { href: '/admin', label: 'Панель администратора', icon: Shield },
+        { href: '/students', label: 'Студенты', icon: Users },
+        { href: '/reports', label: 'Отчёты', icon: BarChart3 },
       ];
     }
 
     if (user.role === 'teacher') {
       return [
         ...baseItems,
-        { href: '/students', label: 'Students', icon: Users },
-        { href: '/reports', label: 'Reports', icon: BarChart3 },
+        { href: '/students', label: 'Студенты', icon: Users },
+        { href: '/reports', label: 'Отчёты', icon: BarChart3 },
       ];
     }
 
@@ -129,19 +129,19 @@ export default function Navigation() {
                 <DropdownMenuItem asChild>
                   <Link href="/profile" className="flex items-center">
                     <User className="mr-2 h-4 w-4" />
-                    Profile
+                    Профиль
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/settings" className="flex items-center">
                     <Settings className="mr-2 h-4 w-4" />
-                    Settings
+                    Настройки
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout} className="text-red-600">
                   <LogOut className="mr-2 h-4 w-4" />
-                  Logout
+                  Выйти
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -191,14 +191,14 @@ export default function Navigation() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <User className="h-4 w-4" />
-                  <span>Profile</span>
+                  <span>Профиль</span>
                 </Link>
                 <button
                   onClick={handleLogout}
                   className="flex items-center space-x-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
                 >
                   <LogOut className="h-4 w-4" />
-                  <span>Logout</span>
+                  <span>Выйти</span>
                 </button>
               </div>
             </div>

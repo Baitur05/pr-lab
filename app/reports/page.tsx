@@ -61,8 +61,8 @@ const mockGroups: Group[] = [
   {
     id: '1',
     name: 'CS-301',
-    description: 'Database Systems - Fall 2024',
-    teacherName: 'Dr. Sarah Johnson',
+    description: 'Базы данных — осенний семестр 2024 года',
+    teacherName: 'Robert Lewandowski',
     studentCount: 25,
     averageGrade: 85,
     completionRate: 88,
@@ -71,8 +71,8 @@ const mockGroups: Group[] = [
   {
     id: '2',
     name: 'CS-302',
-    description: 'Advanced Database Concepts - Fall 2024',
-    teacherName: 'Prof. Michael Chen',
+    description: 'Углублённые концепции баз данных — осенний семестр 2024 года',
+    teacherName: 'Lionel Andrés Messi',
     studentCount: 20,
     averageGrade: 82,
     completionRate: 85,
@@ -83,8 +83,8 @@ const mockGroups: Group[] = [
 const mockStudents: Student[] = [
   {
     id: '3',
-    name: 'John Smith',
-    email: 'john.smith@student.edu',
+    name: 'Kylian Mbappé',
+    email: 'kylian.mbappe@student.edu',
     group: 'CS-301',
     totalAssignments: 8,
     completedAssignments: 6,
@@ -93,8 +93,8 @@ const mockStudents: Student[] = [
   },
   {
     id: '4',
-    name: 'Emma Wilson',
-    email: 'emma.wilson@student.edu',
+    name: 'Erling Haaland',
+    email: 'erling.haaland@student.edu',
     group: 'CS-301',
     totalAssignments: 8,
     completedAssignments: 7,
@@ -103,8 +103,8 @@ const mockStudents: Student[] = [
   },
   {
     id: '5',
-    name: 'Michael Chen',
-    email: 'michael.chen@student.edu',
+    name: 'Kevin De Bruyne',
+    email: 'kevin.debruyne@student.edu',
     group: 'CS-301',
     totalAssignments: 8,
     completedAssignments: 5,
@@ -116,7 +116,7 @@ const mockStudents: Student[] = [
 const mockAssignments: Assignment[] = [
   {
     id: 1,
-    title: 'Creating Tables in PostgreSQL',
+    title: 'Создание таблиц в PostgreSQL',
     deadline: '2024-12-25',
     submissionCount: 20,
     totalStudents: 25,
@@ -125,7 +125,7 @@ const mockAssignments: Assignment[] = [
   },
   {
     id: 2,
-    title: 'SELECT Queries and JOINs',
+    title: 'SELECT-запросы и JOIN',
     deadline: '2024-12-28',
     submissionCount: 15,
     totalStudents: 25,
@@ -134,7 +134,7 @@ const mockAssignments: Assignment[] = [
   },
   {
     id: 3,
-    title: 'Database Indexing and Optimization',
+    title: 'Индексация и оптимизация баз данных',
     deadline: '2025-01-05',
     submissionCount: 8,
     totalStudents: 25,
@@ -192,7 +192,7 @@ export default function ReportsPage() {
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Reports & Analytics</h1>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Статистика и отчёты</h1>
               <p className="text-gray-600">
                 {user?.role === 'admin' 
                   ? 'System-wide performance analytics and reports'
@@ -201,7 +201,7 @@ export default function ReportsPage() {
             </div>
             <Button variant="outline">
               <Download className="h-4 w-4 mr-2" />
-              Export Report
+              Экспорт отчёта
             </Button>
           </div>
 
@@ -215,7 +215,7 @@ export default function ReportsPage() {
                     <SelectValue placeholder="Select group" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Groups</SelectItem>
+                    <SelectItem value="all">Все группы</SelectItem>
                     {mockGroups.map(group => (
                       <SelectItem key={group.id} value={group.name}>
                         {group.name} - {group.description}
@@ -231,53 +231,53 @@ export default function ReportsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <Card className="border-l-4 border-l-blue-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Students</CardTitle>
+                <CardTitle className="text-sm font-medium">Общее количество студентов</CardTitle>
                 <Users className="h-4 w-4 text-blue-600" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-blue-600">{stats.totalStudents}</div>
                 <p className="text-xs text-muted-foreground">
-                  Across {stats.totalGroups} groups
+                  Во всех {stats.totalGroups} группах
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-emerald-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Average Grade</CardTitle>
+                <CardTitle className="text-sm font-medium">Средняя успеваемость</CardTitle>
                 <Award className="h-4 w-4 text-emerald-600" />
               </CardHeader>
               <CardContent>
                 <div className={`text-2xl font-bold ${getGradeColor(stats.averageGrade)}`}>
                   {stats.averageGrade}
                 </div>
-                <p className="text-xs text-muted-foreground">Overall performance</p>
+                <p className="text-xs text-muted-foreground">Общая успеваемость</p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-orange-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Completion Rate</CardTitle>
+                <CardTitle className="text-sm font-medium">Уровень завершения</CardTitle>
                 <CheckCircle className="h-4 w-4 text-orange-600" />
               </CardHeader>
               <CardContent>
                 <div className={`text-2xl font-bold ${getCompletionColor(stats.averageCompletion)}`}>
                   {stats.averageCompletion}%
                 </div>
-                <p className="text-xs text-muted-foreground">Assignment completion</p>
+                <p className="text-xs text-muted-foreground">Выполнение заданий</p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-purple-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Active Assignments</CardTitle>
+                <CardTitle className="text-sm font-medium">Текущие задания</CardTitle>
                 <BookOpen className="h-4 w-4 text-purple-600" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-purple-600">
                   {mockAssignments.length}
                 </div>
-                <p className="text-xs text-muted-foreground">Currently active</p>
+                <p className="text-xs text-muted-foreground">Активно сейчас</p>
               </CardContent>
             </Card>
           </div>
@@ -285,17 +285,17 @@ export default function ReportsPage() {
           {/* Tabs */}
           <Tabs defaultValue="groups" className="space-y-6">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="groups">Groups Overview</TabsTrigger>
-              <TabsTrigger value="students">Student Performance</TabsTrigger>
-              <TabsTrigger value="assignments">Assignment Analytics</TabsTrigger>
+              <TabsTrigger value="groups">Информация о группах</TabsTrigger>
+              <TabsTrigger value="students">Успеваемость студентов</TabsTrigger>
+              <TabsTrigger value="assignments">Статистика заданий</TabsTrigger>
             </TabsList>
 
             <TabsContent value="groups" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Group Performance Overview</CardTitle>
+                  <CardTitle>Общая успеваемость группы</CardTitle>
                   <CardDescription>
-                    Performance metrics for each group
+                    Показатели успеваемости для каждой группы
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -307,16 +307,16 @@ export default function ReportsPage() {
                             <h3 className="text-lg font-semibold text-gray-900">{group.name}</h3>
                             <p className="text-gray-600">{group.description}</p>
                             <p className="text-sm text-gray-500 mt-1">
-                              Instructor: {group.teacherName}
+                              Преподаватель {group.teacherName}
                             </p>
                           </div>
-                          <Badge variant="outline">{group.studentCount} students</Badge>
+                          <Badge variant="outline">{group.studentCount} Студенты</Badge>
                         </div>
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div className="bg-blue-50 p-4 rounded-lg">
                             <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-blue-800">Average Grade</span>
+                              <span className="text-sm font-medium text-blue-800">Средний балл</span>
                               <Award className="h-4 w-4 text-blue-600" />
                             </div>
                             <div className={`text-2xl font-bold ${getGradeColor(group.averageGrade)} mt-1`}>
@@ -326,7 +326,7 @@ export default function ReportsPage() {
                           
                           <div className="bg-green-50 p-4 rounded-lg">
                             <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-green-800">Completion Rate</span>
+                              <span className="text-sm font-medium text-green-800">Уровень выполнения</span>
                               <CheckCircle className="h-4 w-4 text-green-600" />
                             </div>
                             <div className={`text-2xl font-bold ${getCompletionColor(group.completionRate)} mt-1`}>
@@ -336,7 +336,7 @@ export default function ReportsPage() {
                           
                           <div className="bg-orange-50 p-4 rounded-lg">
                             <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-orange-800">Active Assignments</span>
+                              <span className="text-sm font-medium text-orange-800">Текущие задания</span>
                               <BookOpen className="h-4 w-4 text-orange-600" />
                             </div>
                             <div className="text-2xl font-bold text-orange-600 mt-1">
@@ -357,9 +357,9 @@ export default function ReportsPage() {
                 <div className="lg:col-span-2">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Student Performance</CardTitle>
+                      <CardTitle>Успеваемость студентов</CardTitle>
                       <CardDescription>
-                        Click on a student to view detailed performance
+                        Кликните по студенту, чтобы увидеть детали успеваемости
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -391,7 +391,7 @@ export default function ReportsPage() {
                                   {student.averageGrade}
                                 </div>
                                 <div className="text-sm text-gray-600">
-                                  {student.completedAssignments}/{student.totalAssignments} completed
+                                  {student.completedAssignments}/{student.totalAssignments} Завершено
                                 </div>
                               </div>
                             </div>
@@ -407,9 +407,9 @@ export default function ReportsPage() {
                   {selectedStudent ? (
                     <Card>
                       <CardHeader>
-                        <CardTitle>Student Details</CardTitle>
+                        <CardTitle>Сведения о студенте</CardTitle>
                         <CardDescription>
-                          Performance breakdown for {selectedStudent.name}
+                          Подробный отчет о производительности для {selectedStudent.name}
                         </CardDescription>
                       </CardHeader>
                       <CardContent className="space-y-4">
@@ -426,28 +426,28 @@ export default function ReportsPage() {
 
                         <div className="space-y-3">
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-600">Average Grade</span>
+                            <span className="text-sm text-gray-600">Средний балл</span>
                             <span className={`font-bold ${getGradeColor(selectedStudent.averageGrade)}`}>
                               {selectedStudent.averageGrade}
                             </span>
                           </div>
                           
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-600">Completion Rate</span>
+                            <span className="text-sm text-gray-600">Уровень завершения</span>
                             <span className="font-bold">
                               {Math.round((selectedStudent.completedAssignments / selectedStudent.totalAssignments) * 100)}%
                             </span>
                           </div>
                           
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-600">Assignments</span>
+                            <span className="text-sm text-gray-600">Задания</span>
                             <span className="font-bold">
                               {selectedStudent.completedAssignments}/{selectedStudent.totalAssignments}
                             </span>
                           </div>
                           
                           <div className="flex justify-between">
-                            <span className="text-sm text-gray-600">Last Submission</span>
+                            <span className="text-sm text-gray-600">Последняя сдача</span>
                             <span className="font-bold">
                               {new Date(selectedStudent.lastSubmission).toLocaleDateString()}
                             </span>
@@ -456,7 +456,7 @@ export default function ReportsPage() {
 
                         <Link href={`/students/${selectedStudent.id}`}>
                           <Button className="w-full">
-                            View Full Profile
+                            Просмотреть полный профиль
                           </Button>
                         </Link>
                       </CardContent>
@@ -465,9 +465,9 @@ export default function ReportsPage() {
                     <Card>
                       <CardContent className="text-center py-12">
                         <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                        <h3 className="text-lg font-medium text-gray-900 mb-2">Select a Student</h3>
+                        <h3 className="text-lg font-medium text-gray-900 mb-2">Выберите студента</h3>
                         <p className="text-gray-600">
-                          Click on a student from the list to view their detailed performance metrics.
+                          Кликните по студенту, чтобы увидеть детали успеваемости
                         </p>
                       </CardContent>
                     </Card>
@@ -479,9 +479,9 @@ export default function ReportsPage() {
             <TabsContent value="assignments" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Assignment Performance</CardTitle>
+                  <CardTitle>Успеваемость по заданию</CardTitle>
                   <CardDescription>
-                    Analytics for all assignments
+                    Статистика по всем заданиям
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -492,11 +492,11 @@ export default function ReportsPage() {
                           <div>
                             <h3 className="text-lg font-semibold text-gray-900">{assignment.title}</h3>
                             <p className="text-sm text-gray-600">
-                              Due: {new Date(assignment.deadline).toLocaleDateString()}
+                              Срок сдачи: {new Date(assignment.deadline).toLocaleDateString()}
                             </p>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm text-gray-600">Submissions</div>
+                            <div className="text-sm text-gray-600">Отправленные работы</div>
                             <div className="text-lg font-bold">
                               {assignment.submissionCount}/{assignment.totalStudents}
                             </div>
@@ -506,7 +506,7 @@ export default function ReportsPage() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div className="bg-blue-50 p-4 rounded-lg">
                             <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-blue-800">Average Grade</span>
+                              <span className="text-sm font-medium text-blue-800">Средний балл</span>
                               <Award className="h-4 w-4 text-blue-600" />
                             </div>
                             <div className={`text-2xl font-bold ${getGradeColor(assignment.averageGrade)} mt-1`}>
@@ -516,7 +516,7 @@ export default function ReportsPage() {
                           
                           <div className="bg-green-50 p-4 rounded-lg">
                             <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-green-800">Completion Rate</span>
+                              <span className="text-sm font-medium text-green-800">Уровень завершения</span>
                               <CheckCircle className="h-4 w-4 text-green-600" />
                             </div>
                             <div className={`text-2xl font-bold ${getCompletionColor(assignment.completionRate)} mt-1`}>
@@ -526,7 +526,7 @@ export default function ReportsPage() {
                           
                           <div className="bg-orange-50 p-4 rounded-lg">
                             <div className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-orange-800">Submissions</span>
+                              <span className="text-sm font-medium text-orange-800">Отправленные работы</span>
                               <TrendingUp className="h-4 w-4 text-orange-600" />
                             </div>
                             <div className="text-2xl font-bold text-orange-600 mt-1">
@@ -540,7 +540,7 @@ export default function ReportsPage() {
                 </CardContent>
               </Card>
             </TabsContent>
-          </Tabs>
+          </Tabs>]
         </div>
       </div>
     </ProtectedRoute>

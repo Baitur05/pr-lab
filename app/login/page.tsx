@@ -42,27 +42,27 @@ export default function LoginPage() {
           <div className="mx-auto w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mb-4">
             <FileText className="h-8 w-8 text-white" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">LabPracticum</h2>
-          <p className="mt-2 text-gray-600">Database Laboratory Management System</p>
+          <h2 className="text-3xl font-bold text-gray-900">Лабораторный практикум</h2>
+          <p className="mt-2 text-gray-600">Система управления лабораторными работами по базам данных</p>
         </div>
 
         <Card className="shadow-xl border-0">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-center">Sign In</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">Войти</CardTitle>
             <CardDescription className="text-center">
-              Enter your credentials to access the system
+              Введите свои данные для входа в систему
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">Электронная почта</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
                     id="email"
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder="Введите вашу электронную почту"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-10"
@@ -72,13 +72,13 @@ export default function LoginPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Пароль</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
                     id="password"
                     type="password"
-                    placeholder="Enter your password"
+                    placeholder="Введите ваш пароль"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="pl-10"
@@ -95,25 +95,25 @@ export default function LoginPage() {
               )}
 
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Signing in...' : 'Sign In'}
+                {isLoading ? 'Signing in...' : 'Войти'}
               </Button>
             </form>
 
             <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-              <p className="text-sm font-medium text-gray-700 mb-2">Demo Accounts:</p>
+              <p className="text-sm font-medium text-gray-700 mb-2">Демонстрационные аккаунты</p>
               <div className="text-xs text-gray-600 space-y-1">
-                <div><strong>Admin:</strong> admin@university.edu</div>
-                <div><strong>Teacher:</strong> sarah.johnson@university.edu</div>
-                <div><strong>Student:</strong> john.smith@student.edu</div>
-                <div className="mt-2"><strong>Password for all:</strong> password</div>
+                <div><strong>Админ:</strong> admin@university.edu</div>
+                <div><strong>Преподаватель:</strong> lionel.andrés.messi10@university.edu</div>
+                <div><strong>Студент:</strong> cristiano.ronaldo7@student.edu</div>
+                <div className="mt-2"><strong>Пароль для всех:</strong> password</div>
               </div>
             </div>
 
             <div className="mt-4 text-center">
               <p className="text-sm text-gray-600">
-                Need help?{' '}
+                Нужна помощь?{' '}
                 <Link href="/support" className="text-blue-600 hover:underline">
-                  Contact Support
+                  Связаться со службой поддержки
                 </Link>
               </p>
             </div>

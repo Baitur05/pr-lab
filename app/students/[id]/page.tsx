@@ -126,15 +126,15 @@ export default function StudentProfilePage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'not-started':
-        return <Badge variant="secondary" className="bg-gray-100 text-gray-800">Not Started</Badge>;
+        return <Badge variant="secondary" className="bg-gray-100 text-gray-800">Ещё не начато</Badge>;
       case 'submitted':
-        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">Submitted</Badge>;
+        return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">Сдано</Badge>;
       case 'graded':
-        return <Badge variant="secondary" className="bg-green-100 text-green-800">Graded</Badge>;
+        return <Badge variant="secondary" className="bg-green-100 text-green-800">Проверено</Badge>;
       case 'overdue':
-        return <Badge variant="destructive">Overdue</Badge>;
+        return <Badge variant="destructive">Срок истёк</Badge>;
       default:
-        return <Badge variant="secondary">Unknown</Badge>;
+        return <Badge variant="secondary">Неизвестно</Badge>;
     }
   };
 
@@ -211,10 +211,10 @@ export default function StudentProfilePage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <Card>
               <CardContent className="text-center py-12">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">Student Not Found</h2>
-                <p className="text-gray-600 mb-4">The student you're looking for doesn't exist.</p>
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">Студент не найден</h2>
+                <p className="text-gray-600 mb-4">Студент, которого вы ищете, не найден.</p>
                 <Link href="/students">
-                  <Button>Back to Students</Button>
+                  <Button>Вернуться к списку студентов</Button>
                 </Link>
               </CardContent>
             </Card>
@@ -236,7 +236,7 @@ export default function StudentProfilePage() {
             <Link href="/students">
               <Button variant="ghost" className="mb-4">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Students
+                Вернуться к списку студентов
               </Button>
             </Link>
             
@@ -256,11 +256,11 @@ export default function StudentProfilePage() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <GraduationCap className="h-4 w-4" />
-                    <span>Group {student.group}</span>
+                    <span>Группа {student.group}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Calendar className="h-4 w-4" />
-                    <span>Enrolled: {new Date(student.enrollmentDate).toLocaleDateString()}</span>
+                    <span>Зарегистрирован(ы): {new Date(student.enrollmentDate).toLocaleDateString()}</span>
                   </div>
                 </div>
               </div>
@@ -270,7 +270,7 @@ export default function StudentProfilePage() {
                   {student.status === 'active' ? 'Active' : 'Inactive'}
                 </Badge>
                 <p className="text-sm text-gray-600">
-                  Last activity: {new Date(student.lastActivity).toLocaleDateString()}
+                  Последняя активность: {new Date(student.lastActivity).toLocaleDateString()}
                 </p>
               </div>
             </div>
@@ -280,7 +280,7 @@ export default function StudentProfilePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <Card className="border-l-4 border-l-blue-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Assignments</CardTitle>
+                <CardTitle className="text-sm font-medium">Задания</CardTitle>
                 <BookOpen className="h-4 w-4 text-blue-600" />
               </CardHeader>
               <CardContent>
@@ -288,14 +288,14 @@ export default function StudentProfilePage() {
                   {student.completedAssignments}/{student.totalAssignments}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  {getCompletionPercentage()}% completed
+                  {getCompletionPercentage()}% Завершено
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-emerald-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Average Grade</CardTitle>
+                <CardTitle className="text-sm font-medium">Средний балл</CardTitle>
                 <Award className="h-4 w-4 text-emerald-600" />
               </CardHeader>
               <CardContent>
@@ -303,14 +303,14 @@ export default function StudentProfilePage() {
                   {student.averageGrade}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Out of 100 points
+                  Из 100 баллов
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-orange-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Submitted</CardTitle>
+                <CardTitle className="text-sm font-medium">Сдано</CardTitle>
                 <CheckCircle className="h-4 w-4 text-orange-600" />
               </CardHeader>
               <CardContent>
@@ -318,14 +318,14 @@ export default function StudentProfilePage() {
                   {assignments.filter(a => a.status === 'submitted' || a.status === 'graded').length}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Assignments submitted
+                  Отправленные работы
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-purple-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Performance</CardTitle>
+                <CardTitle className="text-sm font-medium">Успеваемость</CardTitle>
                 <TrendingUp className="h-4 w-4 text-purple-600" />
               </CardHeader>
               <CardContent>
@@ -333,7 +333,7 @@ export default function StudentProfilePage() {
                   {student.averageGrade >= 90 ? 'A' : student.averageGrade >= 80 ? 'B' : student.averageGrade >= 70 ? 'C' : student.averageGrade >= 60 ? 'D' : 'F'}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Letter grade
+                  Оценка буквами
                 </p>
               </CardContent>
             </Card>
@@ -342,17 +342,17 @@ export default function StudentProfilePage() {
           {/* Tabs */}
           <Tabs defaultValue="assignments" className="space-y-6">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="assignments">Assignments</TabsTrigger>
-              <TabsTrigger value="grades">Grade History</TabsTrigger>
-              <TabsTrigger value="analytics">Analytics</TabsTrigger>
+              <TabsTrigger value="assignments">Задания</TabsTrigger>
+              <TabsTrigger value="grades">История оценок</TabsTrigger>
+              <TabsTrigger value="analytics">Анализ данных</TabsTrigger>
             </TabsList>
 
             <TabsContent value="assignments" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Assignment Progress</CardTitle>
+                  <CardTitle>Прогресс выполнения задания</CardTitle>
                   <CardDescription>
-                    Track the student's progress on all assignments
+                    Отслеживать прогресс студента по всем заданиям
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -364,10 +364,10 @@ export default function StudentProfilePage() {
                           <div>
                             <h3 className="font-medium text-gray-900">{assignment.title}</h3>
                             <p className="text-sm text-gray-600">
-                              Due: {new Date(assignment.deadline).toLocaleDateString()}
+                              Срок сдачи: {new Date(assignment.deadline).toLocaleDateString()}
                               {assignment.submittedAt && (
                                 <span className="ml-2">
-                                  • Submitted: {new Date(assignment.submittedAt).toLocaleDateString()}
+                                  • Сдано: {new Date(assignment.submittedAt).toLocaleDateString()}
                                 </span>
                               )}
                             </p>
@@ -393,9 +393,9 @@ export default function StudentProfilePage() {
             <TabsContent value="grades" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Grade History</CardTitle>
+                  <CardTitle>История оценок</CardTitle>
                   <CardDescription>
-                    Detailed view of all graded assignments
+                    Детальный обзор всех проверенных заданий
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -405,7 +405,7 @@ export default function StudentProfilePage() {
                         <div>
                           <h3 className="font-medium text-gray-900">{assignment.title}</h3>
                           <p className="text-sm text-gray-600">
-                            Submitted: {assignment.submittedAt && new Date(assignment.submittedAt).toLocaleDateString()}
+                            Сдано: {assignment.submittedAt && new Date(assignment.submittedAt).toLocaleDateString()}
                           </p>
                         </div>
                         <div className="text-right">
@@ -421,7 +421,7 @@ export default function StudentProfilePage() {
                     
                     {getGradedAssignments().length === 0 && (
                       <div className="text-center py-8 text-gray-500">
-                        No graded assignments yet
+                        Пока нет оценённых заданий
                       </div>
                     )}
                   </div>
@@ -433,9 +433,9 @@ export default function StudentProfilePage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Grade Distribution</CardTitle>
+                    <CardTitle>Статистика оценок</CardTitle>
                     <CardDescription>
-                      Breakdown of grades by letter grade
+                      Анализ оценок по буквенным оценкам
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -449,9 +449,9 @@ export default function StudentProfilePage() {
                               grade === 'C' ? 'bg-yellow-500' :
                               grade === 'D' ? 'bg-orange-500' : 'bg-red-500'
                             }`}></div>
-                            <span className="font-medium">Grade {grade}</span>
+                            <span className="font-medium">Оценка {grade}</span>
                           </div>
-                          <span className="text-gray-600">{count} assignments</span>
+                          <span className="text-gray-600">{count} Задания</span>
                         </div>
                       ))}
                     </div>
@@ -460,15 +460,15 @@ export default function StudentProfilePage() {
 
                 <Card>
                   <CardHeader>
-                    <CardTitle>Progress Overview</CardTitle>
+                    <CardTitle>Обзор прогресса</CardTitle>
                     <CardDescription>
-                      Assignment completion status
+                     Статус выполнения задания
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Completion Rate</span>
+                        <span className="text-sm text-gray-600">Уровень завершения</span>
                         <span className="font-medium">{getCompletionPercentage()}%</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-3">
@@ -483,13 +483,13 @@ export default function StudentProfilePage() {
                           <div className="text-2xl font-bold text-green-600">
                             {assignments.filter(a => a.status === 'graded').length}
                           </div>
-                          <div className="text-sm text-gray-600">Graded</div>
+                          <div className="text-sm text-gray-600">Проверено</div>
                         </div>
                         <div className="text-center">
                           <div className="text-2xl font-bold text-red-600">
                             {assignments.filter(a => a.status === 'overdue').length}
                           </div>
-                          <div className="text-sm text-gray-600">Overdue</div>
+                          <div className="text-sm text-gray-600">Срок истёк</div>
                         </div>
                       </div>
                     </div>
