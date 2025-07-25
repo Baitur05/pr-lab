@@ -329,14 +329,17 @@ export default function AdminPage() {
                   {mockUsers.length}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  {mockUsers.filter((u) => u.status === "active").length} активный
+                  {mockUsers.filter((u) => u.status === "active").length}{" "}
+                  активный
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-l-4 border-l-emerald-600">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Преподаватели</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Преподаватели
+                </CardTitle>
                 <GraduationCap className="h-4 w-4 text-emerald-600" />
               </CardHeader>
               <CardContent>
@@ -392,7 +395,9 @@ export default function AdminPage() {
             <TabsContent value="users" className="space-y-6">
               {/* User Management Header */}
               <div className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold text-gray-900">Пользователи</h2>
+                <h2 className="text-xl font-semibold text-gray-900">
+                  Пользователи
+                </h2>
                 <Button
                   onClick={() => setShowCreateUser(true)}
                   className="bg-blue-600 hover:bg-blue-700"
@@ -564,7 +569,9 @@ export default function AdminPage() {
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Преподаватель</span>
+                        <span className="text-sm text-gray-600">
+                          Преподаватель
+                        </span>
                         <span className="font-medium">{group.teacherName}</span>
                       </div>
                       <div className="flex items-center justify-between">
@@ -711,7 +718,9 @@ export default function AdminPage() {
               <Card className="w-full max-w-md">
                 <CardHeader>
                   <CardTitle>Создать новую группу</CardTitle>
-                  <CardDescription>Создать новую группу студентов</CardDescription>
+                  <CardDescription>
+                    Создать новую группу студентов
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleCreateGroup} className="space-y-4">
