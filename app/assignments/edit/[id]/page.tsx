@@ -1,26 +1,32 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
-import Navigation from '@/components/Navigation';
-import ProtectedRoute from '@/components/ProtectedRoute';
-import { useRouter, useParams } from 'next/navigation';
-import { 
-  BookOpen, 
+import React, { useState, useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import Navigation from "@/components/Navigation";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import { useRouter, useParams } from "next/navigation";
+import {
+  BookOpen,
   Calendar,
   FileText,
   Upload,
   Save,
   ArrowLeft,
-  Trash2
-} from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import Link from 'next/link';
+  Trash2,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import Link from "next/link";
 
 interface Assignment {
   id: number;
@@ -36,30 +42,33 @@ interface Assignment {
 const mockAssignments: Assignment[] = [
   {
     id: 1,
-    title: 'Creating Tables in PostgreSQL',
-    description: 'Learn to create and manage database tables with proper constraints and relationships. This assignment covers DDL statements, primary keys, foreign keys, and data types.',
-    deadline: '2024-12-25T23:59',
+    title: "Creating Tables in PostgreSQL",
+    description:
+      "Learn to create and manage database tables with proper constraints and relationships. This assignment covers DDL statements, primary keys, foreign keys, and data types.",
+    deadline: "2024-12-25T23:59",
     maxGrade: 100,
-    materialsFileName: 'postgresql_tables_guide.pdf',
-    createdAt: '2024-12-15T10:00:00Z'
+    materialsFileName: "postgresql_tables_guide.pdf",
+    createdAt: "2024-12-15T10:00:00Z",
   },
   {
     id: 2,
-    title: 'SELECT Queries and JOINs',
-    description: 'Master complex SELECT statements and various types of JOIN operations.',
-    deadline: '2024-12-28T23:59',
+    title: "SELECT Queries and JOINs",
+    description:
+      "Master complex SELECT statements and various types of JOIN operations.",
+    deadline: "2024-12-28T23:59",
     maxGrade: 100,
-    createdAt: '2024-12-18T14:30:00Z'
+    createdAt: "2024-12-18T14:30:00Z",
   },
   {
     id: 3,
-    title: 'Database Indexing and Optimization',
-    description: 'Understand indexing strategies and query optimization techniques.',
-    deadline: '2025-01-05T23:59',
+    title: "Database Indexing and Optimization",
+    description:
+      "Understand indexing strategies and query optimization techniques.",
+    deadline: "2025-01-05T23:59",
     maxGrade: 100,
-    materialsFileName: 'indexing_tutorial.zip',
-    createdAt: '2024-12-20T09:15:00Z'
-  }
+    materialsFileName: "indexing_tutorial.zip",
+    createdAt: "2024-12-20T09:15:00Z",
+  },
 ];
 
 export default function EditAssignmentPage() {
@@ -70,24 +79,26 @@ export default function EditAssignmentPage() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [assignment, setAssignment] = useState<Assignment | null>(null);
 
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    deadline: '',
+    title: "",
+    description: "",
+    deadline: "",
     maxGrade: 100,
     materials: null as File | null,
-    removeMaterials: false
+    removeMaterials: false,
   });
 
   useEffect(() => {
     // Simulate loading assignment data
     setIsLoading(true);
     setTimeout(() => {
-      const foundAssignment = mockAssignments.find(a => a.id === assignmentId);
+      const foundAssignment = mockAssignments.find(
+        (a) => a.id === assignmentId
+      );
       if (foundAssignment) {
         setAssignment(foundAssignment);
         setFormData({
@@ -96,112 +107,117 @@ export default function EditAssignmentPage() {
           deadline: foundAssignment.deadline,
           maxGrade: foundAssignment.maxGrade,
           materials: null,
-          removeMaterials: false
+          removeMaterials: false,
         });
       } else {
-        setError('Assignment not found');
+        setError("Assignment not found");
       }
       setIsLoading(false);
     }, 500);
   }, [assignmentId]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       materials: file,
-      removeMaterials: false
+      removeMaterials: false,
     }));
   };
 
   const handleRemoveMaterials = () => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       materials: null,
-      removeMaterials: true
+      removeMaterials: true,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setIsSaving(true);
 
     // Validation
     if (!formData.title.trim()) {
-      setError('Title is required');
+      setError("Title is required");
       setIsSaving(false);
       return;
     }
 
     if (!formData.description.trim()) {
-      setError('Description is required');
+      setError("Description is required");
       setIsSaving(false);
       return;
     }
 
     if (!formData.deadline) {
-      setError('Deadline is required');
+      setError("Deadline is required");
       setIsSaving(false);
       return;
     }
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      console.log('Updating assignment:', {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      console.log("Updating assignment:", {
         id: assignmentId,
         ...formData,
         materials: formData.materials?.name || null,
         updatedBy: user?.id,
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
       });
 
       setSuccess(true);
-      
+
       // Redirect after successful update
       setTimeout(() => {
-        router.push('/assignments');
+        router.push("/assignments");
       }, 2000);
-
     } catch (err) {
-      setError('Failed to update assignment. Please try again.');
+      setError("Failed to update assignment. Please try again.");
     } finally {
       setIsSaving(false);
     }
   };
 
   const handleDelete = async () => {
-    if (!confirm('Are you sure you want to delete this assignment? This action cannot be undone.')) {
+    if (
+      !confirm(
+        "Are you sure you want to delete this assignment? This action cannot be undone."
+      )
+    ) {
       return;
     }
 
     try {
       setIsLoading(true);
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      console.log('Deleting assignment:', assignmentId);
-      
-      router.push('/assignments');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      console.log("Deleting assignment:", assignmentId);
+
+      router.push("/assignments");
     } catch (err) {
-      setError('Failed to delete assignment. Please try again.');
+      setError("Failed to delete assignment. Please try again.");
       setIsLoading(false);
     }
   };
 
   if (isLoading) {
     return (
-      <ProtectedRoute allowedRoles={['teacher', 'admin']}>
+      <ProtectedRoute allowedRoles={["teacher", "admin"]}>
         <div className="min-h-screen bg-gray-50">
           <Navigation />
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -216,16 +232,20 @@ export default function EditAssignmentPage() {
 
   if (!assignment) {
     return (
-      <ProtectedRoute allowedRoles={['teacher', 'admin']}>
+      <ProtectedRoute allowedRoles={["teacher", "admin"]}>
         <div className="min-h-screen bg-gray-50">
           <Navigation />
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <Card>
               <CardContent className="text-center py-12">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">Задание не найдено</h2>
-                <p className="text-gray-600 mb-4">Задание, которое вы ищете, не существует.</p>
+                <h2 className="text-xl font-semibold text-gray-900 mb-2">
+                  Задание не найдено
+                </h2>
+                <p className="text-gray-600 mb-4">
+                  Задание, которое вы ищете, не существует.
+                </p>
                 <Link href="/assignments">
-                  <Button>Назад к заданиям</Button>
+                  <Button>Назад к заданиям.</Button>
                 </Link>
               </CardContent>
             </Card>
@@ -237,7 +257,7 @@ export default function EditAssignmentPage() {
 
   if (success) {
     return (
-      <ProtectedRoute allowedRoles={['teacher', 'admin']}>
+      <ProtectedRoute allowedRoles={["teacher", "admin"]}>
         <div className="min-h-screen bg-gray-50">
           <Navigation />
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -246,7 +266,9 @@ export default function EditAssignmentPage() {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="h-8 w-8 text-green-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Задание успешно обновлено!</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  Задание успешно обновлено!
+                </h2>
                 <p className="text-gray-600 mb-6">
                   "{formData.title}" обновлено, и изменения теперь активны.
                 </p>
@@ -262,7 +284,7 @@ export default function EditAssignmentPage() {
   }
 
   return (
-    <ProtectedRoute allowedRoles={['teacher', 'admin']}>
+    <ProtectedRoute allowedRoles={["teacher", "admin"]}>
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -276,13 +298,15 @@ export default function EditAssignmentPage() {
             </Link>
             <div className="flex justify-between items-start">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">Редактировать задание</h1>
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                  Редактировать задание
+                </h1>
                 <p className="text-gray-600">
                   Обновить данные для "{assignment.title}"
                 </p>
               </div>
-              <Button 
-                variant="destructive" 
+              <Button
+                variant="destructive"
                 onClick={handleDelete}
                 disabled={isLoading}
               >
@@ -384,9 +408,9 @@ export default function EditAssignmentPage() {
                           {assignment.materialsFileName}
                         </span>
                       </div>
-                      <Button 
-                        type="button" 
-                        variant="outline" 
+                      <Button
+                        type="button"
+                        variant="outline"
                         size="sm"
                         onClick={handleRemoveMaterials}
                       >
@@ -399,15 +423,16 @@ export default function EditAssignmentPage() {
                 {/* Materials Upload */}
                 <div className="space-y-2">
                   <Label htmlFor="materials">
-                    {assignment.materialsFileName && !formData.removeMaterials 
-                      ? 'Replace Assignment Materials' 
-                      : 'Assignment Materials'}
+                    {assignment.materialsFileName && !formData.removeMaterials
+                      ? "Replace Assignment Materials"
+                      : "Assignment Materials"}
                   </Label>
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
                     <Upload className="h-8 w-8 text-gray-400 mx-auto mb-2" />
                     <Label htmlFor="materials" className="cursor-pointer">
                       <span className="text-sm text-gray-600">
-                        Нажмите, чтобы загрузить материалы задания (PDF, DOC, ZIP)
+                        Нажмите, чтобы загрузить материалы задания (PDF, DOC,
+                        ZIP)
                       </span>
                       <Input
                         id="materials"
@@ -424,7 +449,8 @@ export default function EditAssignmentPage() {
                     )}
                   </div>
                   <p className="text-xs text-gray-500">
-                    Загрузите материалы, такие как инструкции, стартовые файлы или справочные документы (максимум 10 МБ)
+                    Загрузите материалы, такие как инструкции, стартовые файлы
+                    или справочные документы (максимум 10 МБ)
                   </p>
                 </div>
 
@@ -435,7 +461,11 @@ export default function EditAssignmentPage() {
                       Отмена
                     </Button>
                   </Link>
-                  <Button type="submit" disabled={isSaving} className="bg-blue-600 hover:bg-blue-700">
+                  <Button
+                    type="submit"
+                    disabled={isSaving}
+                    className="bg-blue-600 hover:bg-blue-700"
+                  >
                     {isSaving ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
